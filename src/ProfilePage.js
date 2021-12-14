@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
-import logo from './logo.svg';
+import logo from "./logo.svg";
 
 export default function ProfileCard() {
   return (
@@ -15,11 +15,13 @@ export default function ProfileCard() {
         image={logo}
         alt="Employee Image"
       />
+
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="div" variant="h5">
             Tammy Thompson
           </Typography>
+
           <Typography
             variant="subtitle1"
             color="text.secondary"
@@ -27,9 +29,10 @@ export default function ProfileCard() {
           >
             general job description
           </Typography>
-          <Typography variant="subtitle2" gutterBottom component="div" >
-        7 Badges
-      </Typography>
+
+          <Typography variant="subtitle2" gutterBottom component="div">
+            7 Badges
+          </Typography>
         </CardContent>
       </Box>
     </Card>
