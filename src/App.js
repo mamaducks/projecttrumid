@@ -1,18 +1,22 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Projects from "./ProjectsAccordion";
 import ProjectsPage from "./ProjectsPage";
-import ProfilePage from "./ProfilePage";
+import ProfilePage from "./ProfileCard";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <ProfilePage />
+    
+      <ThemeProvider theme={theme}>
+        <ProfilePage />
 
-      <Projects />
+        {/* <Projects /> */}
 
-      <ProjectsPage />
-    </div>
+        <ProjectsPage />
+      </ThemeProvider>
+    
   );
 }
 

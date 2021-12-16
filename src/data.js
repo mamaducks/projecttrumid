@@ -22,7 +22,7 @@ const people = [
   { id: "tt", name: "Tony Tiger", title: "CTO" },
 ];
 
-const projects = [
+export const projects = [
   { id: "axe-finder", name: "Axe Finder", desc: "Axe Finder dialog for casts" },
   { id: "t3", name: "T3", desc: "Multi watchlist" },
   {
