@@ -60,7 +60,16 @@ const theme = responsiveFontSizes(
             marginTop: 20,
             marginBottom: 30,
             display: "flex",
-            boxShadow: 3,
+           
+          },
+        },
+      },
+      MuiCardHeader: {
+        styleOverrides: {
+          root: {
+          display: 'flex',
+          flexDirection: 'column',           
+          paddingBottom: 5,
           },
         },
       },
@@ -68,40 +77,52 @@ const theme = responsiveFontSizes(
         styleOverrides: {
           root: {
             margin: "auto",
-            borderRadius: 10,
+            // borderRadius: 10,
             width: "90%",
             paddingTop: 18,
             paddingBottom: 25,
-            boxShadow: 2,
-          },
+            // boxShadow: 2,
+            // elevation: 3
+          
+          }, 
+         
         },
       },
+
+
       MuiAccordion: {
         styleOverrides: {
           root: {
             paddingTop: 1,
             paddingBottom: 1,
+            "&.Mui-expanded": {
+              margin: "auto"
+
+            },
           },
+          
         },
       },
-      MuiAccordionSummary: {
-        styleOverrides: {
-          root: {
-            margin: "auto",
-            paddingTop: 1,
-            paddingBottom: 1,
-          },
-        },
-      },
+     
       MuiDivider: {
         styleOverrides: {
           root: {
             variant: "inset",
-            light: "true",
+            margin: "auto",
+            
+            // light: "true",
+            // BorderColor: "#ff9100",
+            backgroundColor: "#ff9100"
           },
+          
+            // BorderColor: "#ff9100",
+            // color: "ff9100",
+            // borderWidth: 3
+          
         },
       },
     },
+   
     
   })
 );

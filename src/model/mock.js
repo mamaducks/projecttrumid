@@ -1,8 +1,13 @@
+import BadgeStar from "../img/badgesuccess.svg";
+
+
 const badges = [
   {
     id: "first-responder",
     name: "First Responder",
     title: "Always responding to issues first",
+    image: [<img  src={BadgeStar} alt="shield" height={70} width={70} />]
+
   },
   {
     id: "rapid-fixer",
