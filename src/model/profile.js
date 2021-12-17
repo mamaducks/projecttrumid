@@ -1,19 +1,13 @@
-import { selectorFamily } from "recoil";
+import { selector, selectorFamily } from "recoil";
 import { app } from "./app";
 import { compact } from "lodash";
 
-export const profileInfo = selectorFamily({
-  key: "profileInfo",
-  get:
-    (profileId) =>
-    ({ get }) => {
-      const { people, projects, roles, badges } = get(app);
-      const person = people.find((item) => item.id === profileId);
+export const getAllProfileInfos = selector({
+  key: "getAllProfileInfos",
+  get: ({ get }) => {
+    const { people, projects, roles, badges } = get(app);
 
-      if (!person) {
-        return undefined;
-      }
-
+    return people.map((person) => {
       const returnPerson = { ...person };
 
       returnPerson.badges = compact(
@@ -47,5 +41,15 @@ export const profileInfo = selectorFamily({
       );
 
       return returnPerson;
+    });
+  },
+});
+
+export const getProfileInfo = selectorFamily({
+  key: "getProfileInfo",
+  get:
+    (profileId) =>
+    ({ get }) => {
+      return get(getAllProfileInfos).find((item) => item.id === profileId);
     },
 });

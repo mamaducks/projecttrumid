@@ -13,9 +13,11 @@ function App() {
       <Routes>
      
         <Route path="/profile/:profileId" element={<Profile />} />
+       
+        <Route path="/project/:projectId" element={<Project />} />
 
         <Route path="/" element={<Dashboard />} />
-        <Route path="/project" element={<Project />} />
+        
       </Routes>
 
       {/* <Projects /> */}
