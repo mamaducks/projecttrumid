@@ -37,7 +37,7 @@ export function Profile() {
     return <div>User Profile not found</div>;
   }
 
-  const { name, title, image, badges = [], projects = [] } = userInfo;
+  const { name, title,  badges = [], projects = [] } = userInfo;
 
   return (
     <Box sx={{ backgroundColor: "#001e4b" }}>

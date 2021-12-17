@@ -4,8 +4,8 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
-import { projects } from "./data";
-import { Card, Divider, Paper } from "@mui/material";
+import { projects } from "../../data";
+import { Card, CardContent, Divider, Paper } from "@mui/material";
 
 const titles = [
   "Project Lead",
@@ -32,12 +32,34 @@ const peeps = [
 let i = "";
 let both = [...titles, ...peeps];
 
-export default function Types() {
+export function Project() {
   return (
     <Container>
-      <Paper>
-        {projects.map((project) => (
-          <Box
+      <Paper square={true}>
+        
+          <Card>
+            {projects.map((project) => (
+ <CardContent  key={project.id} sx={{ display: "flex", flexDirection: "column" }}>
+                <Box sx={{ alignSelf: "center" }}>
+                  <Box sx={{ typography: "h3" }}>{project.name}</Box>
+                  <Box display="flex" alignItems="center">
+                    <Box
+                      sx={{
+                        typography: "body1",
+                        // textAlign: "flex-end",
+                        flexGrow: 1,
+                      }}
+                    >
+                      {project.desc}
+                    </Box>
+                    <Box my={1} typography="subtitle1" alignSelf="center">
+                     
+                    </Box>
+                  </Box>
+                </Box>
+                </CardContent>
+            ))}
+          {/* <Box
             sx={{
               mx: "auto",
               typography: "h4",
@@ -54,8 +76,10 @@ export default function Types() {
             >
               {project.desc}
             </Box>
-          </Box>
-        ))}
+          </Box> */}
+        </Card>
+
+     
         <Box
           sx={{
             px: 15,

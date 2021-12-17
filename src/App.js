@@ -2,6 +2,7 @@ import "./App.css";
 import { Profile } from "./components/Profile/Profile";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 // import ProfilePage from "./ProfileCard";
+import { Project } from "./components/Project/Project";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { Routes, Route } from "react-router-dom";
@@ -14,7 +15,7 @@ function App() {
         <Route path="/profile/:profileId" element={<Profile />} />
 
         <Route path="/" element={<Dashboard />} />
-       
+        <Route path="/project" element={<Project />} />
       </Routes>
 
       {/* <Projects /> */}
