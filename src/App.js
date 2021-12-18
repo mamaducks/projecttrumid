@@ -11,13 +11,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Routes>
-     
-        <Route path="/profile/:profileId" element={<Profile />} />
-       
-        <Route path="/project/:projectId" element={<Project />} />
+          <Route path="/profile/:profileId" element={<Profile />} />
 
+          <Route path="/project/:projectId" element={<Project />} />
         <Route path="/" element={<Dashboard />} />
-        
       </Routes>
 
       {/* <Projects /> */}

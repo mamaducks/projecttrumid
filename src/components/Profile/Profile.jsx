@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
-import { CardHeader, Paper } from "@mui/material";
+import { CardHeader, Fade, Paper, Popover, Tooltip } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProfileInfo } from "../../model/profile";
@@ -18,6 +18,9 @@ import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import Divider from "@mui/material/Divider";
 
 import { useMemo } from "react";
+import { MyHeader, MyTitle } from "../../Wrappers";
+import Trumids from "../../badgetrumid.svg";
+import { textAlign } from "@mui/system";
 
 export function Profile() {
   const { profileId } = useParams();
@@ -47,142 +50,156 @@ export function Profile() {
     <Box sx={{ backgroundColor: "#001e4b" }}>
       <Container>
         <Paper square={true}>
-          <div>
-            <Card>
-              {/* <CardMedia
-            component="img"
-            sx={{ width: 151 }}
-            image={logo}
-            alt="Employee Image"
-          /> */}
+          <MyHeader label={name} sub={title}>
+            <Box my={1} typography="subtitle1" alignSelf="center">
+              Badges
+              <Badge badgeContent={badges.length} color="secondary">
+                <ShieldIcon color="primary" alignSelf="center" />
+              </Badge>
+            </Box>
+          </MyHeader>
 
-              <CardContent sx={{ display: "flex", flexDirection: "column" }}>
-                <Box sx={{ alignSelf: "center" }}>
-                  <Box sx={{ typography: "h3" }}>{name}</Box>
-                  <Box display="flex" alignItems="center">
-                    <Box
-                      sx={{
-                        typography: "body1",
-                        // textAlign: "flex-end",
-                        flexGrow: 1,
-                      }}
-                    >
-                      {title}
-                    </Box>
-                    <Box my={1} typography="subtitle1" alignSelf="center">
-                      Badges
-                      <Badge badgeContent={badges.length} color="secondary">
-                        <ShieldIcon color="primary" alignSelf="center" />
-                      </Badge>
-                    </Box>
-                  </Box>
+          {/* <CardContent sx={{ display: "flex", flexDirection: "column" }}>
+            <Box sx={{ alignSelf: "center" }}>
+              <Box sx={{ typography: "h3" }}>{name}</Box>
+              <Box display="flex" alignItems="center">
+                <Box
+                  sx={{
+                    typography: "body1",
+                    // textAlign: "flex-end",
+                    flexGrow: 1,
+                  }}
+                >
+                  {title}
                 </Box>
-
+                <Box my={1} typography="subtitle1" alignSelf="center">
+                  Badges
+                  <Badge badgeContent={badges.length} color="secondary">
+                    <ShieldIcon color="primary" alignSelf="center" />
+                  </Badge>
+                </Box>
+              </Box>
+            </Box>
+          </CardContent> */}
+          <Box>
+            <MyTitle title="Badges" />
+            {/* <Box textAlign="center" pb={3} typography="h5" lineHeight={2}>
+              Badges
+              <Divider sx={{ ml: 12, mr: 12 }} />
+            </Box> */}
+            <Box
+              display="flex"
+              flexWrap="wrap"
+              justifyContent="center"
+              alignItems="center"
+              paddingY={2}
+              paddingX={12}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  px: 6,
+                  typography: "subtitle2",
+                }}
+              >
+                <Tooltip
+                  TransitionComponent={Fade}
+                  TransitionProps={{ timeout: 600 }}
+                  title={
+                    <Box sx={{ maxWidth: 300 }}>
+                      <div>Team Member</div>
+                      <div>Valuable Member of the team</div>
+                    </Box>
+                  }
+                >
+                  <img src={Trumids} alt="badge" height={70} width={70} />
+                </Tooltip>
+              </Box>
+              {badgesWithSrc.map((item) => (
                 <Box
                   sx={{
                     display: "flex",
-                    flexGrow: 1,
-                    justifyContent: "space-between",
+                    flexDirection: "column",
+                    // justifyContent: "space-between",
+                    alignItems: "center",
+                    px: 6,
+                    typography: "subtitle2",
                   }}
+                  // title={item.title}
                 >
-                  {badgesWithSrc.map((item) => (
-                    <Box title={item.title}>
-                      <img src={item.url} alt="shield" height={70} width={70} />
-                      <Box
-                        sx={{ pt: 2, fontWeight: 900, typography: "subtitle2" }}
-                      >
-                        {item.name}
+                  <Tooltip
+                    TransitionComponent={Fade}
+                    TransitionProps={{ timeout: 600 }}
+                    title={
+                      <Box sx={{ maxWidth: 300 }}>
+                        <div>{item.name}</div>
+                        <div>{item.title}</div>
+                        <div>{item.desc}</div>
                       </Box>
-                    </Box>
-                  ))}
-                </Box>
-              </CardContent>
-            </Card>
-          </div>
-          {/* <BadgeCard /> */}
-
-          <Card>
-            <Box>
-              <CardHeader title="Badges"></CardHeader>
-              <Divider sx={{ borderColor: "#ff9100" }} />
-              <br />
-              <CardContent sx={{ display: "flex", flexWrap: "wrap" }}>
-                {badgesWithSrc.map((item) => (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      px: 4,
-                      typography: "subtitle2"
-                      // pt: 2
-                    }}
-                    title={item.title}
+                    }
                   >
-                    <Box sx={{ pb: 4 }}>{item.name}</Box>
                     <img src={item.url} alt="badge" height={70} width={70} />
-                  </Box>
-                ))}
-              </CardContent>
+                  </Tooltip>
+                  {/* <Box sx={{ pb: 4 }}>{item.name}</Box> */}
+                </Box>
+              ))}
             </Box>
-          </Card>
-
-          <Card sx={{ flexDirection: "column", pb: 10 }}>
-            <Box textAlign="center" pb={3} typography="h5">
-              Missions
-              <Divider sx={{ ml: 12, mr: 12 }} />
-              <br />
-            </Box>
-            {projects.map((item) => (
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon color="secondary" />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
+          </Box>
+          <Box textAlign="center" pb={3} typography="h5" lineHeight={2}>
+            Missions
+            <Divider sx={{ ml: 12, mr: 12 }} />
+          </Box>
+          {projects.map((item) => (
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon color="secondary" />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Link
+                  href={`/project/${item.id}`}
+                  underline="hover"
+                  color="#000"
                 >
-                  <Link
-                    href={`/project/${item.id}`}
-                    underline="hover"
-                    color="#000"
-                  >
-                    <GroupWorkIcon
-                      sx={{ px: 4, alignSelf: "center", color: "#001e4b" }}
-                    />
-                  </Link>
+                  <GroupWorkIcon
+                    sx={{ px: 4, alignSelf: "center", color: "#001e4b" }}
+                  />
+                </Link>
 
-                  <Box
-                    sx={{ typography: "subtitle1", alignItems: "center" }}
-                    alignItems="center"
-                  >
-                    {item.name}
+                <Box
+                  sx={{ typography: "subtitle1", alignItems: "center" }}
+                  alignItems="center"
+                >
+                  {item.name}
+                </Box>
+              </AccordionSummary>
+              {item.roles.map((role) => (
+                <AccordionDetails>
+                  <Box display="flex">
+                    <Typography
+                      sx={{
+                        mb: 5,
+                        px: 10,
+                        fontWeight: 600,
+                        width: "33%",
+                        flexShrink: 0,
+                      }}
+                      variant="body1"
+                    >
+                      {role.name}
+                    </Typography>
+
+                    <Typography variant="subtitle1" textAlign="right">
+                      {role.desc}
+                    </Typography>
                   </Box>
-                </AccordionSummary>
-                {item.roles.map((role) => (
-                  <AccordionDetails>
-                    <Box display="flex">
-                      <Typography
-                        sx={{
-                          mb: 5,
-                          px: 10,
-                          fontWeight: 600,
-                          width: "33%",
-                          flexShrink: 0,
-                        }}
-                        variant="body1"
-                      >
-                        {role.name}
-                      </Typography>
-
-                      <Typography variant="subtitle1" textAlign="right">
-                        {role.desc}
-                      </Typography>
-                    </Box>
-                  </AccordionDetails>
-                ))}
-              </Accordion>
-            ))}
-          </Card>
+                </AccordionDetails>
+              ))}
+            </Accordion>
+          ))}
         </Paper>
       </Container>
     </Box>
