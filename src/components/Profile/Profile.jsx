@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
-import { Paper } from "@mui/material";
+import { CardHeader, Paper } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProfileInfo } from "../../model/profile";
@@ -14,7 +14,6 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ShieldIcon from "@mui/icons-material/Shield";
 import Badge from "@mui/material/Badge";
-import { BadgeCard } from "../../img/BadgeCard";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import Divider from "@mui/material/Divider";
 
@@ -72,7 +71,7 @@ export function Profile() {
                     </Box>
                     <Box my={1} typography="subtitle1" alignSelf="center">
                       Badges
-                      <Badge badgeContent={2} color="secondary">
+                      <Badge badgeContent={badges.length} color="secondary">
                         <ShieldIcon color="primary" alignSelf="center" />
                       </Badge>
                     </Box>
@@ -89,13 +88,46 @@ export function Profile() {
                   {badgesWithSrc.map((item) => (
                     <Box title={item.title}>
                       <img src={item.url} alt="shield" height={70} width={70} />
+                      <Box
+                        sx={{ pt: 2, fontWeight: 900, typography: "subtitle2" }}
+                      >
+                        {item.name}
+                      </Box>
                     </Box>
                   ))}
                 </Box>
               </CardContent>
             </Card>
           </div>
-          <BadgeCard />
+          {/* <BadgeCard /> */}
+
+          <Card>
+            <Box>
+              <CardHeader title="Badges"></CardHeader>
+              <Divider sx={{ borderColor: "#ff9100" }} />
+              <br />
+              <CardContent sx={{ display: "flex", flexWrap: "wrap" }}>
+                {badgesWithSrc.map((item) => (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      px: 4,
+                      typography: "subtitle2"
+                      // pt: 2
+                    }}
+                    title={item.title}
+                  >
+                    <Box sx={{ pb: 4 }}>{item.name}</Box>
+                    <img src={item.url} alt="badge" height={70} width={70} />
+                  </Box>
+                ))}
+              </CardContent>
+            </Box>
+          </Card>
+
           <Card sx={{ flexDirection: "column", pb: 10 }}>
             <Box textAlign="center" pb={3} typography="h5">
               Missions

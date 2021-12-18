@@ -31,10 +31,10 @@ export function Project() {
     <Box sx={{ backgroundColor: "#001e4b" }}>
       <Container>
         <Paper square={true}>
-          <Card>
+          {/* <Card> */}
             <CardContent sx={{ display: "flex", flexDirection: "column" }}>
               <Box sx={{ alignSelf: "center" }}>
-                <Box sx={{ typography: "h3" }}>{name}</Box>
+                <Box sx={{ typography: "h3",  }}>{name}</Box>
 
                 <Box display="flex" alignItems="center">
                   <Box
@@ -46,9 +46,11 @@ export function Project() {
                     {desc}
                   </Box>
                 </Box>
+                
               </Box>
+              
 
-              <Box
+              {/* <Box
                 sx={{
                   px: 15,
                 }}
@@ -80,30 +82,31 @@ export function Project() {
                     </Stack>
                   </Stack>
                 ))}
-              </Box>
+              </Box> */}
             </CardContent>
-          </Card>
-
+          {/* </Card> */}
+<Box textAlign="center"><br/>
+              Team Members</Box>
           <Box
             sx={{
               px: 15,
             }}
           >
-            <Stack spacing={2}>
+            <Stack spacing={3}>
               {roles.map((item) => (
                 <div>
                   <Box
                     sx={{
                       typography: "h6",
-                      pt: 2,
+                      pt: 4,
                     }}
                   >
-                    {item.name}
+                    {item.name}s
 
                     <Divider />
                   </Box>
 
-                  <Stack direction="row" spacing={2} pb={2} px={5}>
+                  <Stack direction="row" spacing={4} pt={4} px={4}>
                     {item.people.map((item) => (
                       <Link
                         href={`/profile/${item.id}`}
