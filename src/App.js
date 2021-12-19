@@ -1,7 +1,6 @@
 import "./App.css";
 import { Profile } from "./components/Profile/Profile";
 import { Dashboard } from "./components/Dashboard/Dashboard";
-// import ProfilePage from "./ProfileCard";
 import { Project } from "./components/Project/Project";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
@@ -16,10 +15,6 @@ function App() {
           <Route path="/project/:projectId" element={<Project />} />
         <Route path="/" element={<Dashboard />} />
       </Routes>
-
-      {/* <Projects /> */}
-
-      {/* <ProjectsPage /> */}
     </ThemeProvider>
   );
 }

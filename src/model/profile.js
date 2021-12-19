@@ -10,8 +10,12 @@ export const getAllProfileInfos = selector({
     return people.map((person) => {
       const returnPerson = { ...person };
 
+      const personalBadges = [...person.badges];
+
+      personalBadges.unshift({ badgeId: "team-member", desc: "Trumid Member" });
+
       returnPerson.badges = compact(
-        (person.badges || []).map((badgeInfo) => {
+        personalBadges.map((badgeInfo) => {
           const badge = badges.find((item) => item.id === badgeInfo.badgeId);
 
           return !badge ? undefined : { ...badgeInfo, ...badge };

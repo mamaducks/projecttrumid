@@ -17,6 +17,7 @@ export function ProfileAvatar({ profileId }) {
       overlap="circular"
       anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
       color="primary"
+      // color="#00a0ff"
       badgeContent={projects.length}
     >
       <Badge

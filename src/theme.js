@@ -8,7 +8,7 @@ const theme = responsiveFontSizes(
         default: "#001e4b", //trumidblue
       },
       primary: {
-        main: "#001e4b", //white
+        main: "#011e4b", //trumidblue
       },
       secondary: {
         main: "#ff9100", //trumidorange
@@ -47,7 +47,9 @@ const theme = responsiveFontSizes(
         fontFamily: "Cairo",
       },
     },
+
     components: {
+
       MuiCard: {
         styleOverrides: {
           root: {
@@ -60,10 +62,10 @@ const theme = responsiveFontSizes(
             marginTop: 20,
             marginBottom: 30,
             display: "flex",
-           
           },
         },
       },
+
       MuiCardHeader: {
         styleOverrides: {
           root: {
@@ -73,52 +75,69 @@ const theme = responsiveFontSizes(
           },
         },
       },
+
       MuiPaper: {
         styleOverrides: {
           root: {
             margin: "auto",
-            // borderRadius: 10,
             width: "90%",
-            paddingTop: 18,
-            paddingBottom: 25,
-            // boxShadow: 2,
-            // elevation: 3
-          
+          },
+            
+           "&.MuiAppBar-root": {
+              maxHeight: 60,
+              marginBottom: 30,
+              marginTop: 0,
+              paddingTop: 0,
+              "&:last-child": {
+              paddingTop: 0, 
+            },
+},
+ "&.MuiAccordion-root": {
           }, 
-         
         },
-      },
-
+        },
 
       MuiAccordion: {
         styleOverrides: {
           root: {
-            paddingTop: 1,
-            paddingBottom: 1,
+            alignItems: "center",
+            borderColor: "primary",
+            border: 'solid 1px',
+            borderRadius: 10,
+            marginBottom: 3,
+          
             "&.Mui-expanded": {
-              margin: "auto"
-
-            },
+              margin: "auto",
+              marginBottom: 3,
+            }, 
+            "&:last-child": {
+              borderRadius: 10 , 
+        
+            }
           },
           
         },
       },
-     
+
+      MuiLink: {
+        styleOverrides: {
+          root: {
+            color: "primary",
+          "&:hover": {
+  color: "#ff9100"
+}
+          },
+      },
+    },
+
       MuiDivider: {
         styleOverrides: {
           root: {
             variant: "inset",
             margin: "auto",
             
-            // light: "true",
-            // BorderColor: "#ff9100",
             backgroundColor: "#ff9100"
           },
-          
-            // BorderColor: "#ff9100",
-            // color: "ff9100",
-            // borderWidth: 3
-          
         },
       },
     },

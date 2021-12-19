@@ -19,7 +19,7 @@ import Divider from "@mui/material/Divider";
 
 export function MyPageWrapper({ children }) {
   return (
-    <Box sx={{ backgroundColor: "#001e4b" }}>
+    <Box sx={{ backgroundColor: "#001e4b" }}>  
       <Container>
         <Paper square={true}>{children}</Paper>
       </Container>

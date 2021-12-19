@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProjectInfo } from "../../model/project";
 import { ProfileAvatar } from "../Profile/ProfileAvatar";
+import TrumidArrows from "../../trumidarrowscircle.svg";
+import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import { MyHeader, MyTitle } from "../../Wrappers";
 import Trumid from "../../trumid.svg";
 import { flexbox } from "@mui/system";
@@ -19,7 +21,6 @@ export function Project() {
     return <div>Project not found</div>;
   }
 
-  // console.log(JSON.stringify(projectInfo, null, 1));
   console.log(projectInfo);
 
   const { name, desc, roles = [] } = projectInfo;
@@ -28,28 +29,27 @@ export function Project() {
     <Box sx={{ backgroundColor: "#001e4b" }}>
       <Container>
         <Paper square={true}>
-          {/* <MyHeader label={name} sub={desc} /> */}
-
-          <Box display="flex" justifyContent="center" alignItems="center" >
-            <Box alignSelf="auto" pr={8}>
-              <img src={Trumid} alt="trumid" height={55} width={55} />
-            </Box>
-            <Box display="flex" flexDirection="column" >
-              <Box typography="h3"  >
+          <CardContent
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              color: "#011e4b",
+              backgroundColor: "#001e4b",
+            }}
+          >
+            <Box alignSelf="center">
+              <Box typography="h2" fontWeight={500} color="#fff">
                 {name}
               </Box>
-              
-                <Box  typography="h6" pl={0.5}>{desc}</Box>
+
+              <Box display="flex" alignItems="center">
+                <Box typography="h5" color="#fff">
+                  {desc}
+                </Box>
               </Box>
-            
-          </Box>
-          <br />
-          <br />
-          {/* <MyTitle title="Mission Team" /> */}
-          <Box textAlign="center" pb={3} fontSize="1.5rem" lineHeight={1}>
-            Mission Team
-            <Divider sx={{ ml: 12, mr: 12, mt: 2 }} />
-          </Box>
+            </Box>
+          </CardContent>
+
 
           <Box
             sx={{
@@ -59,29 +59,47 @@ export function Project() {
             <Stack spacing={3}>
               {roles.map((item) => (
                 <div>
-                  <Box
-                    sx={{
-                      fontWeight: 700,
-                      pt: 4,
-                      pl: 1,
-                      pb: 3,
-                      fontSize: "1rem",
-                      textTransform: 'capitalize'
-                    }}
-                  >
-                    {item.name}s{/* <Divider sx={{ mr: 12 }} light={true} /> */}
-                  </Box>
+                  <Box textAlign="center">
+                    <Box display="flex" flexGrow={1} alignItems="center">
+                      <Box alignSelf="center">
+                      </Box>
+                      <Box
+                        sx={{
 
-                  <Stack direction="row" spacing={4} py={5} px={6}>
+                          typography: "h6",
+                          fontWeight: 400,
+                          pl: 2,
+                          pt: 4,
+                          color: "#011e4b",
+                        }}
+                      >
+                        {item.name}s
+                      </Box>
+                    </Box>
+                  </Box>
+                  <Divider sx={{ ml: 1, mr: 1 }} />
+                  <Stack
+                    direction="row"
+                    spacing={4}
+                    py={5}
+                    px={5}
+                    flexWrap="wrap"
+                  >
                     {item.people.map((item) => (
                       <Link
                         href={`/profile/${item.id}`}
-                        underline="hover"
-                        color="#000"
+                        underline="none"
+                        // color="#00a0ff"
                         fontSize="1rem"
-                       wrap="noWrap"
-                      sx={{ textTransform: "capitalize"}}
-
+                        fontWeight="600"
+                        noWrap="true"
+                        sx={{
+                          overflow: "visible",
+                          textTransform: "capitalize",
+                          fontVariant: "subtitle1",
+                          py: 5,
+                          px: 5,
+                        }}
                       >
                         <ProfileAvatar profileId={item.id} /> {item.name}
                       </Link>
