@@ -2,7 +2,6 @@ import { selector, selectorFamily } from "recoil";
 import { app } from "./app";
 import { cloneDeep } from "lodash";
 import { getAllProfileInfos } from "./profile";
-import { compact } from "lodash";
 
 export const getAllProjectInfos = selector({
   key: "getAllProjectInfos",
@@ -52,30 +51,3 @@ export const getProjectInfo = selectorFamily({
       return get(getAllProjectInfos).find((item) => item.id === projectId);
     },
 });
-
-//whats up with that
-// export const getTopProjects = selector({
-//   key: "getTopProjects",
-//   get: ({ get }) => {
-//     const { people, projects, topProjects, roles, badges } = get(app);
-
-//     return topProjects.map((project) => {
-//       const returnTopProject = { ...project};
-
-//       if (!project) {
-//         return undefined;
-//       }
-// return returnTopProject;
-//     }) 
-//   }
-
-// });
-
-// export const getTopProjectInfo = selectorFamily({
-//   key: "getTopProjectInfo",
-//   get:
-//     (projectId) =>
-//     ({ get }) => {
-//       return get(getTopProjects).find((item) => item.id === projectId);
-//     },
-// });

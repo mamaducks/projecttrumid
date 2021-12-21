@@ -3,19 +3,23 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
-import { Card, CardContent, Divider, Paper, Typography } from "@mui/material";
+import { CardContent, Divider, Paper} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProjectInfo } from "../../model/project";
 import { ProfileAvatar } from "../Profile/ProfileAvatar";
-import TrumidArrows from "../../trumidarrowscircle.svg";
-import GroupWorkIcon from "@mui/icons-material/GroupWork";
-import { MyHeader, MyTitle } from "../../Wrappers";
-import Trumid from "../../trumid.svg";
-import { flexbox } from "@mui/system";
+import { useMemo } from "react";
+
 export function Project() {
   const { projectId } = useParams();
   const projectInfo = useRecoilValue(getProjectInfo(projectId));
+
+  const projectInfoWithSrc = useMemo(() => {
+    const blob = new Blob([projectInfo.src], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+
+    return { ...projectInfo, url };
+  }, [projectInfo.src]);
 
   if (!projectInfo) {
     return <div>Project not found</div>;
@@ -23,7 +27,7 @@ export function Project() {
 
   console.log(projectInfo);
 
-  const { name, desc, roles = [] } = projectInfo;
+  const { name, desc, url, roles = [] } = projectInfoWithSrc;
 
   return (
     <Box sx={{ backgroundColor: "#001e4b" }}>
@@ -33,23 +37,22 @@ export function Project() {
             sx={{
               display: "flex",
               flexDirection: "column",
-              color: "#011e4b",
-              backgroundColor: "#001e4b",
+              color: "primary",
             }}
           >
+            <img src={url} width="300" height="300" alignSelf="center" />
             <Box alignSelf="center">
-              <Box typography="h2" fontWeight={500} color="#fff">
+              <Box typography="h2" fontWeight={500} color="primary">
                 {name}
               </Box>
 
               <Box display="flex" alignItems="center">
-                <Box typography="h5" color="#fff">
+                <Box typography="h5" color="primary">
                   {desc}
                 </Box>
               </Box>
             </Box>
           </CardContent>
-
 
           <Box
             sx={{
@@ -61,11 +64,9 @@ export function Project() {
                 <div>
                   <Box textAlign="center">
                     <Box display="flex" flexGrow={1} alignItems="center">
-                      <Box alignSelf="center">
-                      </Box>
+                      <Box alignSelf="center"></Box>
                       <Box
                         sx={{
-
                           typography: "h6",
                           fontWeight: 400,
                           pl: 2,
@@ -89,7 +90,6 @@ export function Project() {
                       <Link
                         href={`/profile/${item.id}`}
                         underline="none"
-                        // color="#00a0ff"
                         fontSize="1rem"
                         fontWeight="600"
                         noWrap="true"

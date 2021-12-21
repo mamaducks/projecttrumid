@@ -27,7 +27,7 @@ const theme = responsiveFontSizes(
       },
       text: {
         primary: "#000000", //black
-        secondary: "#FFFFFF", //white
+        secondary: "red", //white
       },
     },
 
@@ -47,9 +47,46 @@ const theme = responsiveFontSizes(
         fontFamily: "Cairo",
       },
     },
+    custom: {
+      profile: {
+        name: {
+          fontWeight: 400,
+          letterSpacing: 1,
+          fontSize: "2.5rem",
+        },
+
+        title: {
+          alignContent: "flex-start",
+          flexGrow: 1,
+          fontSize: "1rem",
+          alignItems: "center",
+        },
+
+        badges: {
+          box: {
+            display: "flex",
+            alignContent: "flex-end",
+            alignItems: "stretch",
+            paddingTop: 8,
+          },
+          label: {
+            display: "flex",
+            fontSize: "0.875rem",
+            alignContent: "flex-end",
+            alignSelf: "flex-end",
+          },
+        },
+
+        header: {
+          textAlign: "center",
+          color: "primary",
+          fontSize: "1.675rem",
+          fontWeight: 400,
+        },
+      },
+    },
 
     components: {
-
       MuiCard: {
         styleOverrides: {
           root: {
@@ -63,15 +100,24 @@ const theme = responsiveFontSizes(
             marginBottom: 30,
             display: "flex",
           },
+          title: {
+            color: "green",
+          },
         },
       },
 
       MuiCardHeader: {
         styleOverrides: {
           root: {
-          display: 'flex',
-          flexDirection: 'column',           
-          paddingBottom: 5,
+            display: "flex",
+            flexDirection: "column",
+            paddingBottom: 5,
+          },
+          content: {
+            action: {
+              alignSelf: "flex-start",
+            },
+            // padding: 20
           },
         },
       },
@@ -82,40 +128,36 @@ const theme = responsiveFontSizes(
             margin: "auto",
             width: "90%",
           },
-            
-           "&.MuiAppBar-root": {
-              maxHeight: 60,
-              marginBottom: 30,
-              marginTop: 0,
+
+          "&.MuiAppBar-root": {
+            maxHeight: 60,
+            marginBottom: 30,
+            marginTop: 0,
+            paddingTop: 0,
+            "&:last-child": {
               paddingTop: 0,
-              "&:last-child": {
-              paddingTop: 0, 
             },
-},
- "&.MuiAccordion-root": {
-          }, 
+          },
         },
-        },
+      },
 
       MuiAccordion: {
         styleOverrides: {
           root: {
             alignItems: "center",
             borderColor: "primary",
-            border: 'solid 1px',
+            border: "solid 1px",
             borderRadius: 10,
             marginBottom: 3,
-          
+
             "&.Mui-expanded": {
               margin: "auto",
               marginBottom: 3,
-            }, 
+            },
             "&:last-child": {
-              borderRadius: 10 , 
-        
-            }
+              borderRadius: 10,
+            },
           },
-          
         },
       },
 
@@ -123,26 +165,24 @@ const theme = responsiveFontSizes(
         styleOverrides: {
           root: {
             color: "primary",
-          "&:hover": {
-  color: "#ff9100"
-}
+            "&:hover": {
+              color: "#ff9100",
+            },
           },
+        },
       },
-    },
 
       MuiDivider: {
         styleOverrides: {
           root: {
             variant: "inset",
             margin: "auto",
-            
-            backgroundColor: "#ff9100"
+
+            backgroundColor: "#ff9100",
           },
         },
       },
     },
-   
-    
   })
 );
 
