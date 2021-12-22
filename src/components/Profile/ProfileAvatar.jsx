@@ -26,7 +26,7 @@ export function ProfileAvatar({ profileId }) {
         color="secondary"
         badgeContent={badges.length}
       >
-        <Avatar alt={profileInfo.name} src="/static/images/avatar/2.jpg" />
+        <Avatar alt={profileInfo.name} src="/static/images/avatar/2.jpg" sx={{backgroundColor: "#32acf56b"}}/>
       </Badge>
     </Badge>
   );

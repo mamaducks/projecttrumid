@@ -10,6 +10,7 @@ const theme = responsiveFontSizes(
       primary: {
         main: "#011e4b", //trumidblue
       },
+      // color="#00a0ff"  trumidlightblue
       secondary: {
         main: "#ff9100", //trumidorange
       },
@@ -34,57 +35,69 @@ const theme = responsiveFontSizes(
     typography: {
       fontFamily: ["Cairo", "Raleway", "Open Sans"].join(","),
       h1: {
-        fontSize: "5rem",
-        fontFamily: "Cairo",
-      },
-      h2: {
-        fontSize: "3.5rem",
+        fontSize: "3rem",
         fontFamily: "Cairo",
         fontStyle: "bold",
       },
-      h3: {
+      h2: {
         fontSize: "2.5rem",
+        // fontFamily: "Cairo",
+        fontStyle: "bold",
+        fontWeight: 500,
+      },
+      h3: {
+        fontSize: "2rem",
         fontFamily: "Cairo",
+
+      },
+      h4: {
+        fontSize: "1.5rem",
+        fontFamily: "Cairo",
+      },
+      h5: {
+        fontSize: "1rem",
+        fontFamily: "Cairo",
+        fontWeight: 300,
+        fontStyle: "bold",
+      },
+      h6: {
+        fontSize: "0.875rem",
+        fontFamily: "Cairo",
+      },
+      caption: {
+        fontSize: "0.75rem",
       },
     },
     custom: {
-      profile: {
-        name: {
-          fontWeight: 400,
-          letterSpacing: 1,
-          fontSize: "2.5rem",
-        },
+      
 
-        title: {
+
+       
+      profile: {
+      
+
+        subHeader: {
           alignContent: "flex-start",
           flexGrow: 1,
-          fontSize: "1rem",
+          fontSize: "h5",
           alignItems: "center",
+          color: "#ff9100",
+          letterSpacing: 1,
+          paddingLeft: 3,
+        },
+        grids: {
+          justifyContent: "center",
+          paddingY: 2,
+          paddingX: 5,
+          boxSizing: "border-box",
         },
 
-        badges: {
-          box: {
-            display: "flex",
-            alignContent: "flex-end",
-            alignItems: "stretch",
-            paddingTop: 8,
-          },
-          label: {
-            display: "flex",
-            fontSize: "0.875rem",
-            alignContent: "flex-end",
-            alignSelf: "flex-end",
-          },
-        },
-
-        header: {
-          textAlign: "center",
-          color: "primary",
-          fontSize: "1.675rem",
-          fontWeight: 400,
-        },
       },
-    },
+
+        
+       
+        },
+    
 
     components: {
       MuiCard: {
@@ -105,6 +118,17 @@ const theme = responsiveFontSizes(
           },
         },
       },
+
+      MuiCardContent: {
+        styleOverrides: {
+        root: {
+          "&:lastChild": {
+            paddingBottom: 0
+          },
+        },
+
+      },
+    },
 
       MuiCardHeader: {
         styleOverrides: {

@@ -32,25 +32,27 @@ export function Project() {
   return (
     <Box sx={{ backgroundColor: "#001e4b" }}>
       <Container>
-        <Paper square={true}>
+        <Paper square={true} >
           <CardContent
             sx={{
               display: "flex",
-              flexDirection: "column",
+              // flexDirection: "column",
               color: "primary",
+              justifyContent: "center",
+              pt: 5
             }}
           >
-            <img src={url} width="300" height="300" alignSelf="center" />
-            <Box alignSelf="center">
-              <Box typography="h2" fontWeight={500} color="primary">
+            <img src={url} alt="mission" width="90" height="90" alignSelf="center" />
+            <Box alignSelf="center" pl={5}>
+              
+              <Box typography="h1"  color="#011e4b">
                 {name}
               </Box>
 
-              <Box display="flex" alignItems="center">
-                <Box typography="h5" color="primary">
+             
+                <Box typography="h5" color= "#ff9100" >
                   {desc}
                 </Box>
-              </Box>
             </Box>
           </CardContent>
 
@@ -67,10 +69,10 @@ export function Project() {
                       <Box alignSelf="center"></Box>
                       <Box
                         sx={{
-                          typography: "h6",
+                          typography: "h4",
                           fontWeight: 400,
-                          pl: 2,
-                          pt: 4,
+                          pl: 4,
+                          pt: 7,
                           color: "#011e4b",
                         }}
                       >
@@ -79,11 +81,12 @@ export function Project() {
                     </Box>
                   </Box>
                   <Divider sx={{ ml: 1, mr: 1 }} />
+                  <Container sx={{ display: "flex", pt: 2 }}>
                   <Stack
                     direction="row"
                     spacing={4}
-                    py={5}
-                    px={5}
+                    py={3}
+                    px={3}
                     flexWrap="wrap"
                   >
                     {item.people.map((item) => (
@@ -105,6 +108,7 @@ export function Project() {
                       </Link>
                     ))}
                   </Stack>
+                  </Container>
                 </div>
               ))}
             </Stack>

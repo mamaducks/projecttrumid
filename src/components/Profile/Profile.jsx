@@ -1,5 +1,6 @@
 import {
   Box,
+  CardActionArea,
   CardContent,
   Container,
   Fade,
@@ -9,15 +10,69 @@ import {
   Paper,
   Divider,
   Tooltip,
+  Card,
+  CardMedia,
+  Stack,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProfileInfo } from "../../model/profile";
 import { useMemo } from "react";
-import Trumid from "../../badgetrumid.svg";
+import Trumid from "../../trumidavatarbadge.svg";
 import TrumidMission from "../../trumid.svg";
+import TrumidPatch from "../../patchtrumid.svg";
+import Avatar from "@mui/material/Avatar";
 
 import { useTheme } from "@mui/material/styles";
+
+function HeaderLabel({ label, content, avatar }) {
+
+  return (
+    <>
+      <Box sx={{ display: "flex", justifyContent: "center", paddingTop: 2 }}>
+        <Box
+          typography="h3"
+          sx={{
+            alignSelf: "flex-end",
+            paddingRight: 2,
+            letterSpacing: 0.5,
+            color: "#011e4b",
+            fontWeight: 500,
+          }}
+        >
+          {label}
+        </Box>
+
+        <Badge badgeContent={content} color="secondary" overlap="circular">
+          {avatar}
+        </Badge>
+      </Box>
+      <Divider sx={{ marginX: 16, marginTop: 1 }} />
+    </>
+  );
+}
+
+function GridContent({ mediaContent, label }) {
+
+  return (
+    <Stack spacing={2} sx={{ justifyContent: "space-evenly" }}>
+      <CardContent sx={{
+  height: 175,
+          width: 200,
+          mx: 1,
+          my: 1,
+          px: 1,
+          py: 1,
+          paddingBottom: 1,
+}}>
+        <div>{mediaContent}</div>
+        <CardContent>
+          <Box sx={{ maxWidth: 340 }}>{label}</Box>
+        </CardContent>
+      </CardContent>
+    </Stack>
+  );
+}
 
 export function Profile() {
   const theme = useTheme();
@@ -58,133 +113,124 @@ export function Profile() {
     <Box sx={{ backgroundColor: "#001e4b" }}>
       <Container>
         <Paper square={true} sx={{ pb: 10 }}>
-          <Container sx={{ display: "flex", justifyContent: "center" }}>
-            <CardContent sx={{ justifyContent: "center" }}>
-              <Box>
-                <Box style={theme.custom.profile.name}>{name}</Box>
-                <Box display="flex">
-                  <Box style={theme.custom.profile.title}>{title}</Box>
-                  <Box style={theme.custom.profile.badges.box}>
-                    <Box style={theme.custom.profile.badges.label}>Badges</Box>
-                    <Badge
-                      badgeContent={profileInfo.badges.length}
-                      color="secondary"
-                      sx={{ pr: 1 }}
-                    >
-                      <img
-                        src={Trumid}
-                        width="30"
-                        height="30"
-                        alignSelf="center"
-                      />
-                    </Badge>
-                  </Box>
-                </Box>
+          <CardContent
+            sx={{ display: "flex", justifyContent: "center", py: 10 }}
+          >
+            <div>
+              <Box typography="h1" letterSpacing={1} color="#011e4b">
+                {name}
               </Box>
-            </CardContent>
-          </Container>
-
-          <CardContent>
-            <Typography variant="h1" component="div">
-              name
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              title
-            </Typography>
-            <Box style={theme.custom.profile.badges.box}>
-              <Box style={theme.custom.profile.badges.label}>Badges</Box>
-              <Badge
-                badgeContent={profileInfo.badges.length}
-                color="secondary"
-                sx={{ pr: 1 }}
-              >
-                <img src={Trumid} width="30" height="30" alignSelf="center" />
-              </Badge>
-            </Box>
-
-            <Typography variant="body2">
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
-            </Typography>
+              <Box display="flex">
+                <Box style={theme.custom.profile.subHeader}>{title}</Box>
+              </Box>
+            </div>
           </CardContent>
-
           <Box>
-            <Box style={theme.custom.profile.header}>
-              Badges
-              <Divider sx={{ mx: 16, mt: 2, alignSelf: "center" }} />
-            </Box>
+            <HeaderLabel
+              label="Badges"
+              content={profileInfo.projects.length}
+              avatar={
+                <Avatar
+                  src={Trumid}
+                  alt="badge"
+                  sx={{ width: 34, height: 34, pb: 1 }}
+                />
+              }
+            />
           </Box>
 
-          <Container sx={{ py: 7, pl: 7 }} maxWidth="sm">
-            <Grid container spacing={5} sx={{ justifyContent: "center" }}>
+          <Container sx={{ display: "flex", pt: 7 }}>
+            <Grid
+            style={theme.custom.profile.grids}
+              container
+             
+            >
               {badgesWithSrc.map((item) => (
-                <Grid item key={item} xs={4} sm={3} md={2}>
-                  <Box
-                    sx={{
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
+                <GridContent
+                  mediaContent={
                     <Tooltip
                       TransitionComponent={Fade}
                       TransitionProps={{ timeout: 600 }}
                       title={
-                        <Box sx={{ maxWidth: 300 }}>
-                          <div>{item.name}</div>
-                          <div>{item.title}</div>
-                          <div>{item.desc}</div>
+                        <Box sx={{ maxWidth: 340 }}>
+                          <Box typography="body2" sx={{ wrap: false }}>
+                            {item.title}
+                          </Box>
+                          <Box typography="caption">{item.desc}</Box>
                         </Box>
                       }
                     >
-                      <img
-                        src={item.url}
-                        srcSet={item.url}
+                      <CardMedia
+                        sx={{ objectFit: "unset" }}
+                        component="img"
+                        height={100}
+                        width={100}
+                        image={item.url}
                         alt={item.title}
-                        loading="lazy"
                       />
                     </Tooltip>
-                  </Box>
-                </Grid>
+                  }
+                  label={
+                    <Box typography="body1" textAlign="center">
+                      {item.name}
+                    </Box>
+                  }
+                />
               ))}
             </Grid>
           </Container>
 
-          <Box style={theme.custom.profile.header}>
-            Missions
-            <Divider sx={{ mx: 16, mb: 5, mt: 2 }} />
-          </Box>
+          <HeaderLabel
+            label="Missions"
+            content={profileInfo.projects.length}
+            avatar={
+              <Avatar
+                src={TrumidPatch}
+                alt="patch"
+                sx={{ width: 45, height: 45 }}
+              />
+            }
+          />
 
-          <Container sx={{ py: 7, pl: 7 }} maxWidth="sm">
-            <Grid container spacing={5} sx={{ justifyContent: "center" }}>
+          <Container sx={{ display: "flex", pt: 7 }}>
+            <Grid
+              container
+              style={theme.custom.profile.grids}
+            >
               {projectsWithSrc.map((item) => (
-                <Grid item key={item} xs={4} sm={3} md={2}>
-                  <Box
-                    sx={{
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
+                <GridContent
+                  mediaContent={
                     <Tooltip
                       TransitionComponent={Fade}
                       TransitionProps={{ timeout: 600 }}
                       title={
                         <>
                           {item.roles.map((role) => (
-                            <Box sx={{ maxWidth: 300 }}>
-                              <div>{role.name}</div>
-                              <div> {role.desc}</div>
+                            <Box sx={{ maxWidth: 340 }}>
+                              <Box typography="body2">{role.name}</Box>
                             </Box>
                           ))}
                         </>
                       }
                     >
-                      <img src={item.url} alt={item.title} loading="lazy" />
+                      <Link to={`/project/${item.projectId}`}>
+                        <CardMedia
+                          sx={{ objectFit: "unset" }}
+                          component="img"
+                          height={100}
+                          width={100}
+                          image={item.url}
+                          alt={item.name}
+                        />
+                      </Link>
                     </Tooltip>
-                  </Box>
-                </Grid>
+                  }
+                  label={
+                    <Box typography="body1" textAlign="center" pb={1}>
+                      {item.name}
+                    </Box>
+                  }
+                />
               ))}
             </Grid>
           </Container>

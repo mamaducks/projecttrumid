@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
-import {  Paper } from "@mui/material";
+import {  Avatar, Badge, Grid, Paper, Stack, Tooltip } from "@mui/material";
 
 import Divider from "@mui/material/Divider";
 
@@ -44,37 +44,64 @@ export function MyTitle({ title }) {
   );
 }
 
-export function BadgeBox({ title, url, name }) {
+
+
+
+export function GridContent( {mediaContent, label }) {
   return (
-    <Box
-      display="flex"
-      flexWrap="wrap"
-      justifyContent="space-between"
-      alignItems="center"
-      paddingY={2}
-      paddingX={12}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          px: 6,
-          typography: "subtitle2",
-        }}
-        title={title}
-      >
-        <img src={url} alt="badge" height={70} width={70} />
-        <Box sx={{ pb: 4 }}>{name}</Box>
-      </Box>
-    </Box>
-  );
+<Stack spacing={2} sx={{ justifyContent: "space-evenly" }}>
+                  <CardContent
+                    sx={{
+                      height: 175,
+                      width: 200,
+                      mx: 1,
+                      my: 1,
+                      px: 1,
+                      py: 1,
+                      paddingBottom: 1,
+                    }}
+                  >
+                    <div>
+                      {mediaContent}
+                    </div>
+                    <CardContent>
+                      <Box sx={{ maxWidth: 340 }}>
+                        {label}
+                      </Box>
+                    </CardContent>
+                  </CardContent>
+                  </Stack>
+
+);
 }
 
+export function BadgeBox({label, content, avatar }) {
+  return (
+    <>
+    <Box sx={{ display: "flex", justifyContent: "center", pt: 2 }}>
+    <Box
+      sx={{
+        alignSelf: "flex-end",
+        pr: 2,
+        typography: "h3",
+        letterSpacing: 0.5,
+        color: "#011e4b",
+        fontWeight: 500,
+      }}
+    >
+      {label}
+    </Box>
 
-
-
-
-
+    <Badge
+      badgeContent={content}
+      color="secondary"
+      overlap="circular"
+    >
+      {avatar}
+    </Badge>
+  </Box>
+  <Divider sx={{ mx: 16, mt: 1 }} />
+  </>
+  );
+}
 
