@@ -108,8 +108,8 @@ const theme = responsiveFontSizes(
             borderRadius: 10,
             width: "90%",
             paddingTop: 20,
-            paddingBottom: 20,
-            marginTop: 20,
+            paddingBottom: 5,
+            marginTop: 5,
             marginBottom: 30,
             display: "flex",
           },
@@ -122,8 +122,8 @@ const theme = responsiveFontSizes(
       MuiCardContent: {
         styleOverrides: {
         root: {
-          "&:lastChild": {
-            paddingBottom: 0
+          "&:last-child": {
+            paddingBottom: 10
           },
         },
 

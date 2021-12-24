@@ -26,55 +26,6 @@ import Avatar from "@mui/material/Avatar";
 
 import { useTheme } from "@mui/material/styles";
 
-function HeaderLabel({ label, content, avatar }) {
-  return (
-    <>
-      <Box sx={{ display: "flex", justifyContent: "center", paddingTop: 2 }}>
-        <Box
-          typography="h3"
-          sx={{
-            alignSelf: "flex-end",
-            paddingRight: 2,
-            letterSpacing: 0.5,
-            color: "#011e4b",
-            fontWeight: 500,
-          }}
-        >
-          {label}
-        </Box>
-
-        <Badge badgeContent={content} color="secondary" overlap="circular">
-          {avatar}
-        </Badge>
-      </Box>
-      <Divider sx={{ marginX: 16, marginTop: 1 }} />
-    </>
-  );
-}
-
-export function GridContent({ mediaContent, label }) {
-  return (
-    <Stack spacing={2} sx={{ justifyContent: "space-evenly" }}>
-      <CardContent
-        sx={{
-          height: 175,
-          width: 200,
-          mx: 1,
-          my: 1,
-          px: 1,
-          py: 1,
-          paddingBottom: 1,
-        }}
-      >
-        <div>{mediaContent}</div>
-        <CardContent>
-          <Box sx={{ maxWidth: 340 }}>{label}</Box>
-        </CardContent>
-      </CardContent>
-    </Stack>
-  );
-}
-
 export function Profile() {
   const theme = useTheme();
   const { profileId } = useParams();
@@ -127,152 +78,342 @@ export function Profile() {
             </div>
           </CardContent>
           <Box>
-            <HeaderLabel
-              label="Badges"
-              content={profileInfo.projects.length}
-              avatar={
+            <Box
+              sx={{ display: "flex", justifyContent: "center", paddingTop: 2 }}
+            >
+              <Box
+                typography="h3"
+                sx={{
+                  alignSelf: "flex-end",
+                  paddingRight: 2,
+                  letterSpacing: 0.5,
+                  color: "#011e4b",
+                  fontWeight: 500,
+                }}
+              >
+                Badges
+              </Box>
+
+              <Badge
+                badgeContent={profileInfo.projects.length}
+                color="secondary"
+                overlap="circular"
+              >
                 <Avatar
                   src={Trumid}
                   alt="badge"
-                  sx={{ width: 34, height: 34, pb: 1 }}
+                  sx={{ width: "auto", height: "auto", maxWidth: 45, pb: 1 }}
                 />
-              }
-            />
+              </Badge>
+            </Box>
+            <Divider sx={{ marginX: 16, marginTop: 1 }} />
           </Box>
 
-          <Container sx={{ display: "flex", pt: 7 }}>
-            <Grid style={theme.custom.profile.grids} container>
+          <Container sx={{ pt: 7 }}>
+            {/* style={theme.custom.profile.grids} */}
+            {/* <Grid
+              sx={{
+                justifyContent: "center",
+                paddingY: 2,
+                paddingX: 5,
+                boxSizing: "border-box",
+              }}
+              container
+            
+            
+            > */}
+
+<Stack
+              direction="row"
+              justifyContent="space-evenly"
+              alignItems="stretch"
+              spacing={0}
+              sx={{ flexWrap: "wrap" }}
+            >
+              {" "}
               {badgesWithSrc.map((item) => (
-                <Stack sx={{ justifyContent: "space-around" }}>
+                <Card sx={{ boxShadow: 3, maxWidth: 300 }}>
+                  
                   <CardContent
                     sx={{
-                      height: 155,
-                      width: 200,
+                      height: "auto",
+                      width: "auto",
                       mx: 1,
                       my: 1,
                       px: 1,
                       py: 1,
                       paddingBottom: 1,
+                      display: "flex",
+                      justifyContent: "center"
                     }}
                   >
-                    <div>
-                      <Box
-                        typography="h5"
+                      {/* <Box
+                        typography="h4"
                         textAlign="center"
-                        pb={3}
-                        color="#001e4b"
-                        fontWeight="600"
+                        pb={5}
+                        sx={{ fontWeight: 500 }}
                       >
                         {item.name}
-                      </Box>
-                      <Tooltip
+                      </Box> */}
+                      {/* <Tooltip
                         TransitionComponent={Fade}
                         TransitionProps={{ timeout: 600 }}
                         title={
-                          <Box sx={{ maxWidth: 340 }}>
-                            <Box typography="body2" sx={{ wrap: false }}>
-                              {item.title}
+                          <Box sx={{ width: "auto" }}>
+                            <Box typography="h6" sx={{ wrap: false }}>
+                              {item.desc}
                             </Box>
-                            <Box typography="caption">{item.desc}</Box>
                           </Box>
                         }
-                      >
-                        <CardMedia
-                          sx={{ objectFit: "unset" }}
-                          component="img"
-                          height={100}
-                          width={100}
-                          image={item.url}
-                          alt={item.title}
-                        />
-                      </Tooltip>
-                    </div>
-                    <CardContent>
-                      <Box sx={{ maxWidth: 340 }}>
-                        {/* <Box typography="h4" textAlign="center">
-                          {item.name}
-                        </Box> */}
-                      </Box>
-                    </CardContent>
-                  </CardContent>
-                </Stack>
-              ))}
-            </Grid>
-          </Container>
-
-          <HeaderLabel
-            label="Missions"
-            content={profileInfo.projects.length}
-            avatar={
-              <Avatar
-                src={TrumidPatch}
-                alt="patch"
-                sx={{ width: 45, height: 45 }}
-              />
-            }
-          />
-
-          <Container sx={{ display: "flex", pt: 7 }}>
-            <Grid container style={theme.custom.profile.grids}>
-              {projectsWithSrc.map((item) => (
-                <Stack spacing={2} sx={{ justifyContent: "space-evenly" }}>
-                  <Card sx={{ boxShadow: 3, width: 230 }}>
-                    <CardContent
-                      sx={{
-                        height: 175,
-                        width: 200,
-                        mx: 1,
-                        my: 1,
-                        px: 1,
-                        py: 1,
-                        paddingBottom: 1,
-                      }}
-                    >
-                      <div>
-                        <Box
-                          typography="h4"
-                          textAlign="center"
-                          pb={5}
-                          sx={{ fontWeight: 500 }}
-                        >
-                          {item.name}
-                        </Box>
-                        <Tooltip
-                          TransitionComponent={Fade}
-                          TransitionProps={{ timeout: 600 }}
-                          title={
-                            <Box sx={{ maxWidth: 340 }}>
-                              <Box typography="h6" sx={{ wrap: false }}>
-                                {item.desc}
-                              </Box>
-                            </Box>
-                          }
-                        >
-                        <Link href={`/project/${item.id}`}>
+                      > */}
+                        {/* <Link href={`/project/${item.id}`}> */}
                           <CardMedia
-                            sx={{ objectFit: "unset" }}
+                           sx={{ maxWidth: 97, minWidth: 95, justifyContent: "center", pr: 3}}
+                          
                             component="img"
-                            height={130}
-                            width={130}
+                            height="auto"
+                            width="auto"
                             image={item.url}
                             alt={item.title}
                           />
-                          </Link>
-                        </Tooltip>
-                      </div>
-                      <CardContent>
-                        <Box sx={{ maxWidth: 340 }}>
-                          <Box typography="h6" sx={{ wrap: false }}>
-                            {item.desc}
-                          </Box>
-
+                        {/* </Link> */}
+                      {/* </Tooltip> */}
+                      {/* <Box sx={{ width: "auto" }}> */}
+                      <div>
+                      <Box
+                        typography="h4"
+                        textAlign="center"
+                        sx={{ fontWeight: 500 }}
+                      >
+                        {item.name}
+                      </Box>
+                        <Box typography="h6"  sx={{ wrap: false }}>
+                          {item.title}
                         </Box>
-                      </CardContent>
-                    </CardContent>
-                  </Card>
-                </Stack>
+                          </div>
+                      {/* </Box> */}
+                 
+                    
+                  </CardContent>
+                </Card>
               ))}
-            </Grid>
+            </Stack>
+
+{/* 
+
+
+
+{/* 
+            <Stack
+              direction="row"
+              justifyContent="space-evenly"
+              alignItems="stretch"
+              spacing={0}
+              sx={{ flexWrap: "wrap" }}
+            >
+              {" "}
+              {badgesWithSrc.map((item) => (
+                <CardContent
+                  sx={{
+                    height: "auto",
+                    width: "auto",
+
+                    mx: 5,
+                    my: 3,
+                    px: 1,
+                    py: 1,
+                    paddingBottom: 1,
+                  }}
+                >
+                  <div>
+                    {/* <Box
+                      typography="h5"
+                      textAlign="center"
+                      pb={3}
+                      color="#001e4b"
+                      fontWeight="600"
+                    >
+                      {item.name}
+                    </Box> */}
+                    {/* <Tooltip
+                      TransitionComponent={Fade}
+                      TransitionProps={{ timeout: 600 }}
+                      title={
+                        <Box sx={{ maxWidth: 340 }}>
+                          <Box
+                            typography="body2"
+                            fontWeight="600"
+                            sx={{ wrap: false }}
+                          >
+                            {item.name}
+                          </Box>
+                          <Box
+                            typography="body2"
+                            //  typography="h5"
+                            textAlign="center"
+                            pb={3}
+                            //  color="#001e4b"
+                          >
+                            {item.title}
+                          </Box>
+                          <Box
+                            typography="body2"
+                            //  typography="h5"
+                            textAlign="center"
+                            pb={3}
+                            //  color="#001e4b"
+                          >
+                            {item.title}
+                          </Box>
+                        </Box>
+                      }
+                    >
+                      <CardMedia
+                        sx={{ maxWidth: 97, minWidth: 95 }}
+                        component="img"
+                        height="auto"
+                        width="auto"
+                        image={item.url}
+                        alt={item.title}
+                      />
+                    </Tooltip> */}
+                  {/* </div>  */}
+
+
+
+
+                  {/* <CardContent>
+                      <Box sx={{ width: "auto" }}>
+                        {/* <Box typography="h4" textAlign="center">
+                          {item.name}
+                        </Box> 
+                      </Box>
+                    </CardContent> */}
+                {/* </CardContent>
+              ))}
+            </Stack>  */}
+            
+
+            {/* </Grid> */}
+          </Container>
+
+          <Box
+            sx={{ display: "flex", justifyContent: "center", paddingTop: 2 }}
+          >
+            <Box
+              typography="h3"
+              sx={{
+                alignSelf: "flex-end",
+                paddingRight: 2,
+                letterSpacing: 0.5,
+                color: "#011e4b",
+                fontWeight: 500,
+              }}
+            >
+              Missions
+            </Box>
+
+            <Badge
+              badgeContent={profileInfo.projects.length}
+              color="secondary"
+              overlap="circular"
+            >
+              <Avatar
+                src={TrumidPatch}
+                alt="patch"
+                sx={{ width: "auto", height: "auto", maxWidth: 45, pb: 1 }}
+              />
+            </Badge>
+          </Box>
+          <Divider sx={{ marginX: 16, marginTop: 1 }} />
+
+          <Container sx={{ pt: 7 }}>
+            {/* style={theme.custom.profile.grids} */}
+            {/* <Grid
+              container
+              sx={{
+                justifyContent: "space-around",
+                paddingY: 2,
+                paddingX: 5,
+                boxSizing: "border-box",
+              }}
+            > */}
+
+            <Stack
+              direction="row"
+              justifyContent="space-evenly"
+              alignItems="stretch"
+              spacing={0}
+              sx={{ flexWrap: "wrap" }}
+            >
+              {" "}
+              {projectsWithSrc.map((item) => (
+                <Card sx={{ boxShadow: 3, maxWidth: 300 }}>
+                  
+                  <CardContent
+                    sx={{
+                      height: "auto",
+                      width: "auto",
+                      mx: 1,
+                      my: 1,
+                      px: 1,
+                      py: 1,
+                      paddingBottom: 1,
+                      display: "flex",
+                      justifyContent: "center"
+                    }}
+                  >
+                      {/* <Box
+                        typography="h4"
+                        textAlign="center"
+                        pb={5}
+                        sx={{ fontWeight: 500 }}
+                      >
+                        {item.name}
+                      </Box> */}
+                      {/* <Tooltip
+                        TransitionComponent={Fade}
+                        TransitionProps={{ timeout: 600 }}
+                        title={
+                          <Box sx={{ width: "auto" }}>
+                            <Box typography="h6" sx={{ wrap: false }}>
+                              {item.desc}
+                            </Box>
+                          </Box>
+                        }
+                      > */}
+                        <Link href={`/project/${item.id}`}>
+                          <CardMedia
+                           sx={{ maxWidth: 97, minWidth: 95, justifyContent: "center", pr: 3}}
+                          
+                            component="img"
+                            height="auto"
+                            width="auto"
+                            image={item.url}
+                            alt={item.title}
+                          />
+                        </Link>
+                      {/* </Tooltip> */}
+                      {/* <Box sx={{ width: "auto" }}> */}
+                      <div>
+                      <Box
+                        typography="h4"
+                        textAlign="center"
+                        sx={{ fontWeight: 500 }}
+                      >
+                        {item.name}
+                      </Box>
+                        <Box typography="h6"  textAlign="center"sx={{ wrap: false }}>
+                          {item.desc}
+                        </Box>
+                          </div>
+                      {/* </Box> */}
+                 
+                    
+                  </CardContent>
+                </Card>
+              ))}
+            </Stack>
           </Container>
         </Paper>
       </Container>

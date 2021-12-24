@@ -53,7 +53,7 @@ export function People() {
                       <Box display="flex">
                         <Box
                           sx={{
-                            alignContent: "flex-start",
+                            // alignContent: "flex-start",
                             flexGrow: 1,
                             fontSize: "h5",
                             alignItems: "center",
@@ -70,31 +70,37 @@ export function People() {
                             sx={{
                               display: "flex",
                               justifyContent: "center",
-                              paddingTop: 2,
+                              paddingTop: 5,
+                              
                             }}
                           >
                             <Badge
                               badgeContent={item.projects.length}
                               color="secondary"
                               overlap="circular"
+                             
+                              // sx={{gapRow:70}}
                             >
                               <Avatar
                                 src={TrumidPatch}
                                 alt="badge"
-                                sx={{ width: 34, height: 34, pb: 1 }}
+                                sx={{ width: "auto", height: "auto", maxWidth: 34, pb: 1,}}
                               />
                             </Badge>
+                            <Box sx={{ pl: 2}} >
                             <Badge
                               badgeContent={item.badges.length}
                               color="secondary"
                               overlap="circular"
+                             
                             >
                               <Avatar
                                 src={Trumid}
                                 alt="badge"
-                                sx={{ width: 34, height: 34, pb: 1 }}
+                                sx={{ width: "auto", height: "auto", maxWidth: 34, pb: 1, }}
                               />
                             </Badge>
+                            </Box>
                           </Box>
                         </Box>
                       </Box>

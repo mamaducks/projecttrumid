@@ -44,7 +44,31 @@ export function MyTitle({ title }) {
   );
 }
 
+export function HeaderLabel({ label, content, avatar }) {
+  return (
+    <>
+      <Box sx={{ display: "flex", justifyContent: "center", paddingTop: 2 }}>
+        <Box
+          typography="h3"
+          sx={{
+            alignSelf: "flex-end",
+            paddingRight: 2,
+            letterSpacing: 0.5,
+            color: "#011e4b",
+            fontWeight: 500,
+          }}
+        >
+          {label}
+        </Box>
 
+        <Badge badgeContent={content} color="secondary" overlap="circular">
+          {avatar}
+        </Badge>
+      </Box>
+      <Divider sx={{ marginX: 16, marginTop: 1 }} />
+    </>
+  );
+}
 
 
 export function GridContent( {mediaContent, label }) {
