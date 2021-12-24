@@ -1,15 +1,11 @@
 import {
   Box,
-  CardActionArea,
   CardContent,
   Container,
-  Fade,
-  Typography,
-  Grid,
+  
   Badge,
   Paper,
   Divider,
-  Tooltip,
   Card,
   CardMedia,
   Stack,
@@ -20,12 +16,11 @@ import { getProfileInfo } from "../../model/profile";
 import { useMemo } from "react";
 import Link from "@mui/material/Link";
 import Trumid from "../../trumidavatarbadge.svg";
-import TrumidMission from "../../trumid.svg";
 import TrumidPatch from "../../patchtrumid.svg";
 import Avatar from "@mui/material/Avatar";
+import AppBar from "../Dashboard/AppBar";
 
 import { useTheme } from "@mui/material/styles";
-import { CenterFocusStrong } from "@mui/icons-material";
 
 export function Profile() {
   const theme = useTheme();
@@ -63,8 +58,9 @@ export function Profile() {
   const { name, title, badges = [], projects = [] } = profileInfo;
 
   return (
+    
     <Box sx={{ backgroundColor: "#001e4b" }}>
-      <Container>
+      <AppBar />
         <Paper square={true} sx={{ pb: 10 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "center", py: 4 }}
@@ -160,7 +156,6 @@ export function Profile() {
                         {item.title}
                       </Box>
                     </div>
-                    {/* </Box> */}
                   </CardContent>
                 </Card>
               ))}
@@ -198,16 +193,6 @@ export function Profile() {
           <Divider sx={{ marginX: 16, marginTop: 1 }} />
 
           <Container sx={{ pt: 7 }}>
-            {/* style={theme.custom.profile.grids} */}
-            {/* <Grid
-              container
-              sx={{
-                justifyContent: "space-around",
-                paddingY: 2,
-                paddingX: 5,
-                boxSizing: "border-box",
-              }}
-            > */}
 
             <Stack
               direction="row"
@@ -232,25 +217,7 @@ export function Profile() {
                       justifyContent: "center",
                     }}
                   >
-                    {/* <Box
-                        typography="h4"
-                        textAlign="center"
-                        pb={5}
-                        sx={{ fontWeight: 500 }}
-                      >
-                        {item.name}
-                      </Box> */}
-                    {/* <Tooltip
-                        TransitionComponent={Fade}
-                        TransitionProps={{ timeout: 600 }}
-                        title={
-                          <Box sx={{ width: "auto" }}>
-                            <Box typography="h6" sx={{ wrap: false }}>
-                              {item.desc}
-                            </Box>
-                          </Box>
-                        }
-                      > */}
+              
                     <Link href={`/project/${item.id}`}>
                       <CardMedia
                         sx={{
@@ -286,14 +253,12 @@ export function Profile() {
                         {item.desc}
                       </Box>
                     </div>
-                    {/* </Box> */}
                   </CardContent>
                 </Card>
               ))}
             </Stack>
           </Container>
         </Paper>
-      </Container>
     </Box>
   );
 }

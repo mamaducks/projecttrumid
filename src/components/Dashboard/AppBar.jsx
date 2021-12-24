@@ -16,10 +16,7 @@ import MenuList from "@mui/material/MenuList";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ContentCut from "@mui/icons-material/ContentCut";
-import ContentCopy from "@mui/icons-material/ContentCopy";
-import ContentPaste from "@mui/icons-material/ContentPaste";
-import Cloud from "@mui/icons-material/Cloud";
+
 import TrumidArrow from "../../bluearrowright.svg";
 import Link from "@mui/material/Link";
 
@@ -44,7 +41,10 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Box flexGrow={1}>
-            <img src={Trumid} alt="badge" height={48} width={48} />
+            <Link href={"/"} underline="none">
+              {" "}
+              <img src={Trumid} alt="badge" height={48} width={48} />
+            </Link>
           </Box>
 
           <div>
@@ -80,39 +80,34 @@ export default function ButtonAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-          
-                <MenuItem>
-                  <ListItemIcon>
-                    <img
-                      src={TrumidArrow}
-                      alt="bluearrow"
-                      width="22"
-                      height="22"
-                    />
-                  </ListItemIcon>
-                  <ListItemText>
-                    <Link href="/projects" underline="none">
-                      Missions
-                    </Link>
-                  </ListItemText>
-                 
-                </MenuItem>
-                <MenuItem>
-                  <ListItemIcon>
-                    <img
-                      src={TrumidArrow}
-                      alt="bluearrow"
-                      width="22"
-                      height="22"
-                    />
-                  </ListItemIcon>
-                  <Link href="/people" underline="none">
-                    Trumid Team
+              <MenuItem>
+                <ListItemIcon>
+                  <img
+                    src={TrumidArrow}
+                    alt="bluearrow"
+                    width="22"
+                    height="22"
+                  />
+                </ListItemIcon>
+                <ListItemText>
+                  <Link href="/projects" underline="none">
+                    Missions
                   </Link>
-
-               
-                </MenuItem>
-              
+                </ListItemText>
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <img
+                    src={TrumidArrow}
+                    alt="bluearrow"
+                    width="22"
+                    height="22"
+                  />
+                </ListItemIcon>
+                <Link href="/people" underline="none">
+                  Trumid Team
+                </Link>
+              </MenuItem>
             </Menu>
           </div>
         </Toolbar>

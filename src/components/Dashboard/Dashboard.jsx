@@ -1,5 +1,4 @@
 import * as React from "react";
-import Shield from "../../shield40.png";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
@@ -7,19 +6,10 @@ import {
   Card,
   CardContent,
   Divider,
-  List,
-  Paper,
-  Typography,
+  Link,
   CardMedia,
-  Fade,
-  Tooltip,
   Grid,
-  ImageList,
-  ImageListItem,
-  Badge,
-  Avatar,
 } from "@mui/material";
-import { useParams, Link } from "react-router-dom";
 import { useMemo } from "react";
 
 import { useRecoilValue } from "recoil";
@@ -31,8 +21,6 @@ import { getAllProjectInfos } from "../../model/project";
 import { getAllProfileInfos } from "../../model/profile";
 import TrumidArrows from "../../orangearrowright.svg";
 import TrumidArrowsBlue from "../../bluearrowright.svg";
-import { GridContent } from "../Profile/Profile";
-import { ProfileAvatar } from "../Profile/ProfileAvatar";
 
 function ShuffleArray() {
   const projectsRandom = useRecoilValue(getAllProjectInfos);
@@ -74,7 +62,7 @@ export function DashboardNew() {
                 color: "primary",
                 justifyContent: "center",
                 alignContent: "center",
-                pt: 5,
+                pt: 15,
               }}
             >
               <Box alignSelf="center" pr={4}>
@@ -108,12 +96,19 @@ export function DashboardNew() {
           </Box>
         </Grid>
       </Container>
-      <Box textAlign="center" pb={3} fontSize="2rem" lineHeight={1}>
-        Current Missions
-      </Box>
-      <Divider sx={{ marginX: 16, marginTop: 1 }} />
 
-      <Container>
+      <Container sx={{ pt: 20 }}>
+        <Box marginLeft={8} pl={3} fontSize="2rem" lineHeight={1}>
+          <img
+            src={TrumidArrows}
+            alt="mission"
+            width={27}
+            height={27}
+            alignSelf="center"
+          />
+          Current Missions
+        </Box>
+        <Divider sx={{ mt: 1, mb: 5 }} />
         <Grid
           container
           sx={{
@@ -147,7 +142,7 @@ export function DashboardNew() {
                   }}
                 >
                   <div>
-                    <Link to={`/project/${item.id}`}>
+                    <Link href={`/project/${item.id}`}>
                       <CardMedia
                         component="img"
                         image={item.url}
@@ -159,7 +154,10 @@ export function DashboardNew() {
 
                   <CardContent>
                     <Box typography="h4" fontWeight="bold" color="#011e4b">
-                      {item.name}
+                      <Link href={`/project/${item.id}`} underline="none">
+                        {" "}
+                        {item.name}
+                      </Link>
                     </Box>
 
                     <Box
@@ -178,7 +176,19 @@ export function DashboardNew() {
         </Grid>
       </Container>
 
-      <Container>
+      <Container sx={{ pt: 12 }}>
+        <Box marginLeft={8} pt={7} pl={3} fontSize="2rem" lineHeight={1}>
+          <img
+            src={TrumidArrows}
+            alt="mission"
+            width={27}
+            height={27}
+            alignSelf="center"
+          />{" "}
+          Team Members
+        </Box>
+        <Divider sx={{ mt: 1, mb: 5 }} />
+
         <Grid
           container
           sx={{
@@ -211,7 +221,7 @@ export function DashboardNew() {
                     pt: 5,
                   }}
                 >
-                  <Link to={`/profile/${item.id}`}>
+                  <Link href={`/profile/${item.id}`}>
                     <CardMedia
                       component="img"
                       image={index % 2 ? TrumidArrows : TrumidArrowsBlue}
@@ -222,7 +232,9 @@ export function DashboardNew() {
 
                   <CardContent>
                     <Box typography="h4" fontWeight="bold" color="#011e4b">
-                      {item.name}
+                      <Link href={`/profile/${item.id}`} underline="none">
+                        {item.name}
+                      </Link>
                     </Box>
                     <div>
                       <Box
