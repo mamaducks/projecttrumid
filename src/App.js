@@ -4,6 +4,8 @@ import { Dashboard, DashboardNew } from "./components/Dashboard/Dashboard";
 import { Project } from "./components/Project/Project";
 import { People } from "./components/AppMenu/People";
 import { Projects } from "./components/AppMenu/Projects";
+import { Peeps } from "./components/AppMenu/People";
+
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { Routes, Route } from "react-router-dom";
@@ -16,7 +18,7 @@ function App() {
 
           <Route path="/project/:projectId" element={<Project />} />
           <Route path="/projects" element={<Projects  />} />
-          <Route path="/people" element={<People />} />
+          <Route path="/people" element={<Peeps />} />
 
         <Route path="/" element={<DashboardNew />} />
       </Routes>

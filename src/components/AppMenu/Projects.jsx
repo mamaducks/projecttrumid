@@ -7,11 +7,25 @@ import Container from "@mui/material/Container";
 import { CardContent, Divider, Paper } from "@mui/material";
 import TrumidArrow from "../../bluearrowright.svg";
 import TrumidArrows from "../../trumidarrows.svg";
+import { useMemo } from "react";
 
 import { getAllProjectInfos } from "../../model/project";
 
 export function Projects() {
   const projects = useRecoilValue(getAllProjectInfos);
+
+  const projectsWithSrc = useMemo(
+    () =>
+      projects.map((item) => {
+        const blob = new Blob([item.src], { type: "image/svg+xml" });
+        const url = URL.createObjectURL(blob);
+
+        return { ...item, url };
+      }),
+    [projects]
+
+  );
+
   console.log(projects);
 
   return (
@@ -19,12 +33,11 @@ export function Projects() {
       Projects
       <Box sx={{ backgroundColor: "#001e4b" }}>
         <Container>
-          {projects.map((item) => (
+          {projectsWithSrc.map((item) => (
             <Paper square={true}>
               <CardContent
                 sx={{
                   display: "flex",
-                  // flexDirection: "column",
                   color: "primary",
                   justifyContent: "center",
                   pt: 5,
