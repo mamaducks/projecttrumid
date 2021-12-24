@@ -2,6 +2,7 @@ import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import { useRecoilValue } from "recoil";
 import { getProfileInfo } from "../../model/profile";
+import Shield from "@mui/icons-material/Shield";
 
 export function ProfileAvatar({ profileId }) {
   const profileInfo = useRecoilValue(getProfileInfo(profileId));
@@ -31,3 +32,5 @@ export function ProfileAvatar({ profileId }) {
     </Badge>
   );
 }
+
+

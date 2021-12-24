@@ -16,6 +16,8 @@ import {
   Grid,
   ImageList,
   ImageListItem,
+  Badge,
+  Avatar,
 } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
 import { useMemo } from "react";
@@ -27,8 +29,10 @@ import Trumid from "../../trumid.svg";
 import AppBar from "./AppBar";
 import { getAllProjectInfos } from "../../model/project";
 import { getAllProfileInfos } from "../../model/profile";
-import TrumidArrows from "../../trumidarrows.svg";
+import TrumidArrows from "../../orangearrowright.svg";
+import TrumidArrowsBlue from "../../bluearrowright.svg";
 import { GridContent } from "../Profile/Profile";
+import { ProfileAvatar } from "../Profile/ProfileAvatar";
 
 function ShuffleArray() {
   const projectsRandom = useRecoilValue(getAllProjectInfos);
@@ -67,7 +71,6 @@ export function DashboardNew() {
             <CardContent
               sx={{
                 display: "flex",
-                // flexDirection: "column",
                 color: "primary",
                 justifyContent: "center",
                 alignContent: "center",
@@ -195,7 +198,7 @@ export function DashboardNew() {
             boxSizing: "border-box",
           }}
         >
-          {people.map((item) => (
+          {people.map((item, index) => (
             <Stack spacing={3} sx={{ justifyContent: "space-evenly" }}>
               <Card sx={{ boxShadow: 3, width: "auto", pb: 1 }}>
                 <CardContent
@@ -208,30 +211,29 @@ export function DashboardNew() {
                     pt: 5,
                   }}
                 >
-                  <div>
-                    <Link to={`/profile/${item.id}`}>
-                      <CardMedia
-                        component="img"
-                        image={TrumidArrows}
-                        alt="trumidarrow"
-                        sx={{ objectFit: "unset", gap: 3, width: "auto" }}
-                      />
-                    </Link>
-                  </div>
+                  <Link to={`/profile/${item.id}`}>
+                    <CardMedia
+                      component="img"
+                      image={index % 2 ? TrumidArrows : TrumidArrowsBlue}
+                      alt="trumidarrow"
+                      sx={{ objectFit: "unset", gap: 3, height: "auto" }}
+                    />
+                  </Link>
 
                   <CardContent>
                     <Box typography="h4" fontWeight="bold" color="#011e4b">
                       {item.name}
                     </Box>
-
-                    <Box
-                      typography="h6"
-                      color="#ff9100"
-                      pl={1}
-                      sx={{ overflow: "hidden", flexWrap: "noWrap" }}
-                    >
-                      {item.title}
-                    </Box>
+                    <div>
+                      <Box
+                        typography="h6"
+                        color="#ff9100"
+                        pl={1}
+                        sx={{ overflow: "hidden", flexWrap: "noWrap" }}
+                      >
+                        {item.title}
+                      </Box>
+                    </div>
                   </CardContent>
                 </CardContent>
               </Card>
@@ -239,7 +241,6 @@ export function DashboardNew() {
           ))}
         </Grid>
       </Container>
-
     </div>
   );
 }

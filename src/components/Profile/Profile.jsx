@@ -14,10 +14,11 @@ import {
   CardMedia,
   Stack,
 } from "@mui/material";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProfileInfo } from "../../model/profile";
 import { useMemo } from "react";
+import Link from "@mui/material/Link";
 import Trumid from "../../trumidavatarbadge.svg";
 import TrumidMission from "../../trumid.svg";
 import TrumidPatch from "../../patchtrumid.svg";
@@ -244,10 +245,10 @@ export function Profile() {
                               <Box typography="h6" sx={{ wrap: false }}>
                                 {item.desc}
                               </Box>
-                              {/* <Box typography="caption">{item.desc}</Box> */}
                             </Box>
                           }
                         >
+                        <Link href={`/project/${item.id}`}>
                           <CardMedia
                             sx={{ objectFit: "unset" }}
                             component="img"
@@ -256,6 +257,7 @@ export function Profile() {
                             image={item.url}
                             alt={item.title}
                           />
+                          </Link>
                         </Tooltip>
                       </div>
                       <CardContent>
@@ -264,12 +266,6 @@ export function Profile() {
                             {item.desc}
                           </Box>
 
-                          {/* <Box typography="h6" sx={{ wrap: false }}>
-                              {item.title}
-                            </Box> */}
-                          {/* <Box typography="body1" textAlign="center">
-                          {item.name}
-                        </Box> */}
                         </Box>
                       </CardContent>
                     </CardContent>
