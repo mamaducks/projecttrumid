@@ -26,6 +26,8 @@ import Trumid from "../../trumid.svg";
 
 import AppBar from "./AppBar";
 import { getAllProjectInfos } from "../../model/project";
+import { getAllProfileInfos } from "../../model/profile";
+import TrumidArrows from "../../trumidarrows.svg";
 import { GridContent } from "../Profile/Profile";
 
 function ShuffleArray() {
@@ -42,6 +44,7 @@ function ShuffleArray() {
 
 export function DashboardNew() {
   const projects = useRecoilValue(getAllProjectInfos);
+  const people = useRecoilValue(getAllProfileInfos);
 
   const projectsWithSrc = useMemo(
     () =>
@@ -116,14 +119,7 @@ export function DashboardNew() {
             paddingX: 5,
             boxSizing: "border-box",
           }}
-        >
-          {projectsWithSrc.map((item) => (
-            <Stack
-              spacing={2}
-              sx={{ display: "flex", justifyContent: "space-around" }}
-            ></Stack>
-          ))}
-        </Grid>
+        ></Grid>
 
         <Grid
           container
@@ -153,31 +149,97 @@ export function DashboardNew() {
                         component="img"
                         image={item.url}
                         alt={item.title}
-                        sx={{ objectFit: "unset",  gap: 3 , width: "auto"}}
+                        sx={{ objectFit: "unset", gap: 3, width: "auto" }}
                       />
                     </Link>
                   </div>
-                
-                    <CardContent>
-                      <Box typography="h4" fontWeight="bold" color="#011e4b">
-                        {item.name}
-                      </Box>
 
-                      <Box
-                        typography="h6"
-                        color="#ff9100"
-                        pl={1}
-                        sx={{ overflow: "hidden", flexWrap: "noWrap" }}
-                      >
-                        {item.desc}
-                      </Box>
-                    </CardContent>
+                  <CardContent>
+                    <Box typography="h4" fontWeight="bold" color="#011e4b">
+                      {item.name}
+                    </Box>
+
+                    <Box
+                      typography="h6"
+                      color="#ff9100"
+                      pl={1}
+                      sx={{ overflow: "hidden", flexWrap: "noWrap" }}
+                    >
+                      {item.desc}
+                    </Box>
+                  </CardContent>
                 </CardContent>
               </Card>
             </Stack>
           ))}
         </Grid>
       </Container>
+
+      <Container>
+        <Grid
+          container
+          sx={{
+            justifyContent: "center",
+            paddingY: 2,
+            paddingX: 5,
+            boxSizing: "border-box",
+          }}
+        ></Grid>
+
+        <Grid
+          container
+          sx={{
+            justifyContent: "space-around",
+            paddingY: 2,
+            paddingX: 5,
+            boxSizing: "border-box",
+          }}
+        >
+          {people.map((item) => (
+            <Stack spacing={3} sx={{ justifyContent: "space-evenly" }}>
+              <Card sx={{ boxShadow: 3, width: "auto", pb: 1 }}>
+                <CardContent
+                  sx={{
+                    display: "flex",
+                    color: "primary",
+                    justifyContent: "center",
+                    alignContent: "center",
+
+                    pt: 5,
+                  }}
+                >
+                  <div>
+                    <Link to={`/profile/${item.id}`}>
+                      <CardMedia
+                        component="img"
+                        image={TrumidArrows}
+                        alt="trumidarrow"
+                        sx={{ objectFit: "unset", gap: 3, width: "auto" }}
+                      />
+                    </Link>
+                  </div>
+
+                  <CardContent>
+                    <Box typography="h4" fontWeight="bold" color="#011e4b">
+                      {item.name}
+                    </Box>
+
+                    <Box
+                      typography="h6"
+                      color="#ff9100"
+                      pl={1}
+                      sx={{ overflow: "hidden", flexWrap: "noWrap" }}
+                    >
+                      {item.title}
+                    </Box>
+                  </CardContent>
+                </CardContent>
+              </Card>
+            </Stack>
+          ))}
+        </Grid>
+      </Container>
+
     </div>
   );
 }

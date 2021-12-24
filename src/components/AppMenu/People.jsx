@@ -9,9 +9,8 @@ import TrumidArrow from "../../bluearrowright.svg";
 import TrumidArrows from "../../trumidarrows.svg";
 import { useMemo } from "react";
 import { getAllProfileInfos } from "../../model/profile";
-import { getAllProjectInfos } from "../../model/project";
 
-export function Peeps() {
+export function People() {
   const people = useRecoilValue(getAllProfileInfos);
 
   return (
@@ -84,11 +83,3 @@ export function Peeps() {
   );
 }
 
-
-
-
-export function People() {
-    return (
-    <div>people</div>
-    );
-}
