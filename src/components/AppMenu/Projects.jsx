@@ -23,52 +23,57 @@ export function Projects() {
         return { ...item, url };
       }),
     [projects]
+
   );
 
   console.log(projects);
 
   return (
     <div>
+     
       <Box sx={{ backgroundColor: "#001e4b" }}>
         <Container>
-          <Paper square={true}>
-            {projectsWithSrc.map((item) => (
-              <Card sx={{ width: "auto" }}>
-                <CardContent
-                  sx={{
-                    display: "flex",
-                    color: "primary",
-                    justifyContent: "center",
-                    pt: 5,
-                  }}
-                >
-                  <Link href={`/project/${item.id}`}>
-                    <CardMedia
-                      component="img"
-                      image={item.url}
-                      alt={item.name}
-                      sx={{
-                        objectFit: "unset",
-                        gap: 3,
-                        width: "auto",
-                        alignSelf: "auto",
-                      }}
-                    />
-                  </Link>
+         
+            <Paper square={true}>
+             {projectsWithSrc.map((item) => (
+            <Card sx={{width: 'auto'}}
+            >
+              <CardContent
+                sx={{
+                  display: "flex",
+                  color: "primary",
+                  justifyContent: "center",
+                  pt: 5,
+                }}
+              >
+              
 
-                  <Box alignSelf="center" pl={5}>
-                    <Box typography="h1" color="#011e4b">
-                      {item.name}
-                    </Box>
+                   <Link href={`/project/${item.id}`}>
+                      <CardMedia
+                        component="img"
+                        image={item.url}
+                        alt={item.name}
+                        sx={{ objectFit: "unset", gap: 3, width: "auto", alignSelf:"auto" }}
+                      />
+                    </Link>
 
-                    <Box typography="h5" color="#ff9100">
-                      {item.desc}
-                    </Box>
+                <Box alignSelf="center" pl={5}>
+                  <Box typography="h1" color="#011e4b">
+                    
+                    {item.name}
                   </Box>
-                </CardContent>
+
+                  <Box typography="h5" color="#ff9100">
+                   
+                    {item.desc}
+                  </Box>
+                </Box>
+              </CardContent>
               </Card>
-            ))}
-          </Paper>
+              ))}   
+               s
+            </Paper>
+         
         </Container>
       </Box>
     </div>

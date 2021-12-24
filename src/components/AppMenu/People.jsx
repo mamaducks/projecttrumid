@@ -26,10 +26,11 @@ export function People() {
       <Box sx={{ backgroundColor: "#001e4b" }}>
         <Container>
           <Paper square={true}>
-            <Box textAlign="center" pb={3} fontSize="1.5rem" lineHeight={1}>
+            <Box textAlign="center" pb={3} fontSize="2rem" lineHeight={1}>
               Team Members
-              <Divider sx={{ ml: 12, mr: 12, mt: 2 }} />
             </Box>
+            <Divider sx={{ marginX: 16, marginTop: 5 }} />
+
             {people.map((item) => (
               <Card>
                 <CardContent
@@ -37,12 +38,10 @@ export function People() {
                     display: "flex",
                     color: "primary",
                     justifyContent: "center",
-                    pt: 5,
+                    pY: 8,
+
                   }}
                 >
-                  <CardContent
-                    sx={{ display: "flex", justifyContent: "center", py: 10 }}
-                  >
                     <div>
                       <Box typography="h1" letterSpacing={1} color="#011e4b">
                         <Link href={`/profile/${item.id}`} underline="none">
@@ -65,47 +64,52 @@ export function People() {
                           {item.title}
                         </Box>
 
-                        <Box>
                           <Box
                             sx={{
                               display: "flex",
                               justifyContent: "center",
                               paddingTop: 5,
-                              
                             }}
                           >
                             <Badge
                               badgeContent={item.projects.length}
                               color="secondary"
                               overlap="circular"
-                             
+
                               // sx={{gapRow:70}}
                             >
                               <Avatar
                                 src={TrumidPatch}
                                 alt="badge"
-                                sx={{ width: "auto", height: "auto", maxWidth: 34, pb: 1,}}
+                                sx={{
+                                  width: "auto",
+                                  height: "auto",
+                                  maxWidth: 34,
+                                  pb: 1,
+                                }}
                               />
                             </Badge>
-                            <Box sx={{ pl: 2}} >
-                            <Badge
-                              badgeContent={item.badges.length}
-                              color="secondary"
-                              overlap="circular"
-                             
-                            >
-                              <Avatar
-                                src={Trumid}
-                                alt="badge"
-                                sx={{ width: "auto", height: "auto", maxWidth: 34, pb: 1, }}
-                              />
-                            </Badge>
+                            <Box sx={{ pl: 2 }}>
+                              <Badge
+                                badgeContent={item.badges.length}
+                                color="secondary"
+                                overlap="circular"
+                              >
+                                <Avatar
+                                  src={Trumid}
+                                  alt="badge"
+                                  sx={{
+                                    width: "auto",
+                                    height: "auto",
+                                    maxWidth: 34,
+                                    pb: 1,
+                                  }}
+                                />
+                              </Badge>
                             </Box>
                           </Box>
                         </Box>
-                      </Box>
                     </div>
-                  </CardContent>
                 </CardContent>
               </Card>
             ))}
