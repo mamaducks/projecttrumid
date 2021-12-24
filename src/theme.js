@@ -86,7 +86,7 @@ const theme = responsiveFontSizes(
           paddingLeft: 3,
         },
         grids: {
-          justifyContent: "center",
+          justifyContent: "space-around",
           paddingY: 2,
           paddingX: 5,
           boxSizing: "border-box",

@@ -26,7 +26,6 @@ import Avatar from "@mui/material/Avatar";
 import { useTheme } from "@mui/material/styles";
 
 function HeaderLabel({ label, content, avatar }) {
-
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "center", paddingTop: 2 }}>
@@ -52,19 +51,20 @@ function HeaderLabel({ label, content, avatar }) {
   );
 }
 
-function GridContent({ mediaContent, label }) {
-
+export function GridContent({ mediaContent, label }) {
   return (
     <Stack spacing={2} sx={{ justifyContent: "space-evenly" }}>
-      <CardContent sx={{
-  height: 175,
+      <CardContent
+        sx={{
+          height: 175,
           width: 200,
           mx: 1,
           my: 1,
           px: 1,
           py: 1,
           paddingBottom: 1,
-}}>
+        }}
+      >
         <div>{mediaContent}</div>
         <CardContent>
           <Box sx={{ maxWidth: 340 }}>{label}</Box>
@@ -140,42 +140,61 @@ export function Profile() {
           </Box>
 
           <Container sx={{ display: "flex", pt: 7 }}>
-            <Grid
-            style={theme.custom.profile.grids}
-              container
-             
-            >
+            <Grid style={theme.custom.profile.grids} container>
               {badgesWithSrc.map((item) => (
-                <GridContent
-                  mediaContent={
-                    <Tooltip
-                      TransitionComponent={Fade}
-                      TransitionProps={{ timeout: 600 }}
-                      title={
-                        <Box sx={{ maxWidth: 340 }}>
-                          <Box typography="body2" sx={{ wrap: false }}>
-                            {item.title}
+                <Stack sx={{ justifyContent: "space-around" }}>
+                  <CardContent
+                    sx={{
+                      height: 155,
+                      width: 200,
+                      mx: 1,
+                      my: 1,
+                      px: 1,
+                      py: 1,
+                      paddingBottom: 1,
+                    }}
+                  >
+                    <div>
+                      <Box
+                        typography="h5"
+                        textAlign="center"
+                        pb={3}
+                        color="#001e4b"
+                        fontWeight="600"
+                      >
+                        {item.name}
+                      </Box>
+                      <Tooltip
+                        TransitionComponent={Fade}
+                        TransitionProps={{ timeout: 600 }}
+                        title={
+                          <Box sx={{ maxWidth: 340 }}>
+                            <Box typography="body2" sx={{ wrap: false }}>
+                              {item.title}
+                            </Box>
+                            <Box typography="caption">{item.desc}</Box>
                           </Box>
-                          <Box typography="caption">{item.desc}</Box>
-                        </Box>
-                      }
-                    >
-                      <CardMedia
-                        sx={{ objectFit: "unset" }}
-                        component="img"
-                        height={100}
-                        width={100}
-                        image={item.url}
-                        alt={item.title}
-                      />
-                    </Tooltip>
-                  }
-                  label={
-                    <Box typography="body1" textAlign="center">
-                      {item.name}
-                    </Box>
-                  }
-                />
+                        }
+                      >
+                        <CardMedia
+                          sx={{ objectFit: "unset" }}
+                          component="img"
+                          height={100}
+                          width={100}
+                          image={item.url}
+                          alt={item.title}
+                        />
+                      </Tooltip>
+                    </div>
+                    <CardContent>
+                      <Box sx={{ maxWidth: 340 }}>
+                        {/* <Box typography="h4" textAlign="center">
+                          {item.name}
+                        </Box> */}
+                      </Box>
+                    </CardContent>
+                  </CardContent>
+                </Stack>
               ))}
             </Grid>
           </Container>
@@ -193,44 +212,69 @@ export function Profile() {
           />
 
           <Container sx={{ display: "flex", pt: 7 }}>
-            <Grid
-              container
-              style={theme.custom.profile.grids}
-            >
+            <Grid container style={theme.custom.profile.grids}>
               {projectsWithSrc.map((item) => (
-                <GridContent
-                  mediaContent={
-                    <Tooltip
-                      TransitionComponent={Fade}
-                      TransitionProps={{ timeout: 600 }}
-                      title={
-                        <>
-                          {item.roles.map((role) => (
-                            <Box sx={{ maxWidth: 340 }}>
-                              <Box typography="body2">{role.name}</Box>
-                            </Box>
-                          ))}
-                        </>
-                      }
+                <Stack spacing={2} sx={{ justifyContent: "space-evenly" }}>
+                  <Card sx={{ boxShadow: 3, width: 230 }}>
+                    <CardContent
+                      sx={{
+                        height: 175,
+                        width: 200,
+                        mx: 1,
+                        my: 1,
+                        px: 1,
+                        py: 1,
+                        paddingBottom: 1,
+                      }}
                     >
-                      <Link to={`/project/${item.projectId}`}>
-                        <CardMedia
-                          sx={{ objectFit: "unset" }}
-                          component="img"
-                          height={100}
-                          width={100}
-                          image={item.url}
-                          alt={item.name}
-                        />
-                      </Link>
-                    </Tooltip>
-                  }
-                  label={
-                    <Box typography="body1" textAlign="center" pb={1}>
-                      {item.name}
-                    </Box>
-                  }
-                />
+                      <div>
+                        <Box
+                          typography="h4"
+                          textAlign="center"
+                          pb={5}
+                          sx={{ fontWeight: 500 }}
+                        >
+                          {item.name}
+                        </Box>
+                        <Tooltip
+                          TransitionComponent={Fade}
+                          TransitionProps={{ timeout: 600 }}
+                          title={
+                            <Box sx={{ maxWidth: 340 }}>
+                              <Box typography="h6" sx={{ wrap: false }}>
+                                {item.desc}
+                              </Box>
+                              {/* <Box typography="caption">{item.desc}</Box> */}
+                            </Box>
+                          }
+                        >
+                          <CardMedia
+                            sx={{ objectFit: "unset" }}
+                            component="img"
+                            height={130}
+                            width={130}
+                            image={item.url}
+                            alt={item.title}
+                          />
+                        </Tooltip>
+                      </div>
+                      <CardContent>
+                        <Box sx={{ maxWidth: 340 }}>
+                          <Box typography="h6" sx={{ wrap: false }}>
+                            {item.desc}
+                          </Box>
+
+                          {/* <Box typography="h6" sx={{ wrap: false }}>
+                              {item.title}
+                            </Box> */}
+                          {/* <Box typography="body1" textAlign="center">
+                          {item.name}
+                        </Box> */}
+                        </Box>
+                      </CardContent>
+                    </CardContent>
+                  </Card>
+                </Stack>
               ))}
             </Grid>
           </Container>

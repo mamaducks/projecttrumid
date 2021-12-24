@@ -19,7 +19,7 @@ export function Project() {
     const url = URL.createObjectURL(blob);
 
     return { ...projectInfo, url };
-  }, [projectInfo.src]);
+  }, [projectInfo]);
 
   if (!projectInfo) {
     return <div>Project not found</div>;
@@ -42,7 +42,7 @@ export function Project() {
               pt: 5
             }}
           >
-            <img src={url} alt="mission" width="90" height="90" alignSelf="center" />
+            <img src={url} alt={name} width="90" height="90" alignSelf="center" />
             <Box alignSelf="center" pl={5}>
               
               <Box typography="h1"  color="#011e4b">

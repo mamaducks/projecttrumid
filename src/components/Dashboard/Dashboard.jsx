@@ -1,113 +1,183 @@
 import * as React from "react";
-import Shield from "../../shield40.png"
+import Shield from "../../shield40.png";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
-import { Card, CardContent, Divider, List, Paper, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { getTopProjectInfo } from "../../model/project";
-import { ProfileAvatar } from "../Profile/ProfileAvatar";
-import { MyHeader, MyTitle } from "../../Wrappers";
-import Trumid from "../../trumid.svg";
-import { flexbox } from "@mui/system";
-import { topProjects } from "../../model/mock";
-import  TrumidArrows from "../../trumidarrows.svg"
-import AppBar from "./AppBar";
+import {
+  Card,
+  CardContent,
+  Divider,
+  List,
+  Paper,
+  Typography,
+  CardMedia,
+  Fade,
+  Tooltip,
+  Grid,
+  ImageList,
+  ImageListItem,
+} from "@mui/material";
+import { useParams, Link } from "react-router-dom";
+import { useMemo } from "react";
 
-export function Dashboard() {
+import { useRecoilValue } from "recoil";
+
+import Trumid from "../../trumid.svg";
+
+import AppBar from "./AppBar";
+import { getAllProjectInfos } from "../../model/project";
+import { GridContent } from "../Profile/Profile";
+
+function ShuffleArray() {
+  const projectsRandom = useRecoilValue(getAllProjectInfos);
+
+  for (let i = projectsRandom.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [projectsRandom[i], projectsRandom[j]] = [
+      projectsRandom[j],
+      projectsRandom[i],
+    ];
+  }
+}
+
+export function DashboardNew() {
+  const projects = useRecoilValue(getAllProjectInfos);
+
+  const projectsWithSrc = useMemo(
+    () =>
+      projects.map((item) => {
+        const blob = new Blob([item.src], { type: "image/svg+xml" });
+        const url = URL.createObjectURL(blob);
+
+        return { ...item, url };
+      }),
+    [projects]
+  );
 
   return (
-    <>
-    <AppBar/>
-      <Paper square={true} color="blue">
+    <div>
+      <AppBar />
 
+      <Container>
+        <Grid item>
+          <Box alignItems="center">
+            <CardContent
+              sx={{
+                display: "flex",
+                // flexDirection: "column",
+                color: "primary",
+                justifyContent: "center",
+                alignContent: "center",
+                pt: 5,
+              }}
+            >
+              <Box alignSelf="center" pr={4}>
+                <img
+                  src={Trumid}
+                  alt="mission"
+                  width="80"
+                  height="80"
+                  alignSelf="center"
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignSelf: "center",
+                  flexDirection: "column",
+                  color: "primary",
+                  justifyContent: "center",
+                  alignContent: "center",
+                }}
+              >
+                <Box typography="h1" fontWeight="bold" color="#011e4b">
+                  Trumid Center
+                </Box>
 
-          <Box display="flex" justifyContent="center" alignItems="center" pb={20} >
-            <Box  pr={8}>
-              <img src={Trumid} alt="trumid" height={75} width={75} />
-            </Box>
-            <Box display="flex" flexDirection="column" justifyContent="center">
-              <Box typography="h3" textAlign="center" >
-                Trumid Center
+                <Box typography="h3" color="#ff9100" pl={2}>
+                  Missions and Badges
+                </Box>
               </Box>
-              
-                <Box  typography="h6" textAlign="center" >Missions and Badges</Box>
-              </Box>
-            
+            </CardContent>
           </Box>
-          
-          <Box textAlign="center" pb={3} fontSize="1.5rem" lineHeight={1}>
-            Current Missions
-            <Divider sx={{ ml: 12, mr: 12, mt: 2 }} />
-          </Box>
-    <Stack direction="row" spacing={10} justifyContent="center">        
-            {topProjects.map((item) => (
+        </Grid>
+      </Container>
+      <Box textAlign="center" pb={3} fontSize="2rem" lineHeight={1}>
+        Current Missions
+      </Box>
+      <Divider sx={{ marginX: 16, marginTop: 1 }} />
 
-<Box display="flex"  justifyContent="center" alignItems="center" px={8} >
+      <Container>
+        <Grid
+          container
+          sx={{
+            justifyContent: "center",
+            paddingY: 2,
+            paddingX: 5,
+            boxSizing: "border-box",
+          }}
+        >
+          {projectsWithSrc.map((item) => (
+            <Stack
+              spacing={2}
+              sx={{ display: "flex", justifyContent: "space-around" }}
+            ></Stack>
+          ))}
+        </Grid>
 
- <Box alignSelf="auto" pr={4}>
-              <img src={TrumidArrows} alt="trumid" height={50} width={50} />
-            </Box>
-<Box display="flex" flexDirection="column" >
-
-<Box typography="h5"  >
-                {item.name}
-              </Box>
-                <Box  typography="body2" pl={0.5}>{item.desc}</Box>
-
-              </Box>
-              </Box>
-            ))}
-            </Stack>
-          <Box
-            sx={{
-              px: 15,
-            }}
-          >
-            <Stack spacing={3}>
-              
-                  <Box
-                    sx={{
-                      fontWeight: 700,
-                      pt: 4,
-                      pl: 1,
-                      pb: 3,
-                      fontSize: "1rem",
-                      textTransform: 'capitalize'
-                    }}
-                  >
-                    topppps
-                  </Box>
-                  <Box
+        <Grid
+          container
+          sx={{
+            justifyContent: "space-around",
+            paddingY: 2,
+            paddingX: 5,
+            boxSizing: "border-box",
+          }}
+        >
+          {projectsWithSrc.map((item) => (
+            <Stack spacing={3} sx={{ justifyContent: "space-evenly" }}>
+              <Card sx={{ boxShadow: 3, width: "auto", pb: 1 }}>
+                <CardContent
                   sx={{
-                      fontWeight: 700,
-                      pt: 4,
-                      pl: 1,
-                      pb: 3,
-                      fontSize: "1rem",
-                      textTransform: 'capitalize'
-                    }}
-                  >
-                    topppps
-                  </Box>
-                  </Stack>
-                  <Stack direction="row" spacing={4} py={5} px={6}>
-                      <Link
-                        underline="hover"
-                        color="#000"
-                        fontSize="1rem"
-                       wrap="noWrap"
-                      sx={{ textTransform: "capitalize"}}
+                    display: "flex",
+                    color: "primary",
+                    justifyContent: "center",
+                    alignContent: "center",
 
-                      >project name
-                      </Link>
-                  </Stack>
-           
-          </Box>
-        </Paper>
-        </>
+                    pt: 5,
+                  }}
+                >
+                  <div>
+                    <Link to={`/project/${item.id}`}>
+                      <CardMedia
+                        component="img"
+                        image={item.url}
+                        alt={item.title}
+                        sx={{ objectFit: "unset",  gap: 3 , width: "auto"}}
+                      />
+                    </Link>
+                  </div>
+                
+                    <CardContent>
+                      <Box typography="h4" fontWeight="bold" color="#011e4b">
+                        {item.name}
+                      </Box>
 
+                      <Box
+                        typography="h6"
+                        color="#ff9100"
+                        pl={1}
+                        sx={{ overflow: "hidden", flexWrap: "noWrap" }}
+                      >
+                        {item.desc}
+                      </Box>
+                    </CardContent>
+                </CardContent>
+              </Card>
+            </Stack>
+          ))}
+        </Grid>
+      </Container>
+    </div>
   );
 }
