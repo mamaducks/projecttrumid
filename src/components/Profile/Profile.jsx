@@ -2,13 +2,14 @@ import {
   Box,
   CardContent,
   Container,
-  
+  Grid,
   Badge,
   Paper,
   Divider,
   Card,
   CardMedia,
   Stack,
+  CardHeader,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -58,112 +59,22 @@ export function Profile() {
   const { name, title, badges = [], projects = [] } = profileInfo;
 
   return (
-    
     <Box sx={{ backgroundColor: "#001e4b" }}>
       <AppBar />
-        <Paper square={true} sx={{ pb: 10 }}>
-          <CardContent
-            sx={{ display: "flex", justifyContent: "center", py: 4 }}
-          >
-            <div>
-              <Box typography="h1" letterSpacing={1} color="#011e4b">
-                {name}
-              </Box>
-              <Box display="flex">
-                <Box style={theme.custom.profile.subHeader}>{title}</Box>
-              </Box>
-            </div>
-          </CardContent>
-          <Box>
-            <Box
-              sx={{ display: "flex", justifyContent: "center", paddingTop: 2 }}
-            >
-              <Box
-                typography="h3"
-                sx={{
-                  alignSelf: "flex-end",
-                  paddingRight: 2,
-                  letterSpacing: 0.5,
-                  color: "#011e4b",
-                  fontWeight: 500,
-                }}
-              >
-                Badges
-              </Box>
-
-              <Badge
-                badgeContent={profileInfo.projects.length}
-                color="secondary"
-                overlap="circular"
-              >
-                <Avatar
-                  src={Trumid}
-                  alt="badge"
-                  sx={{ width: "auto", height: "auto", maxWidth: 45, pb: 1 }}
-                />
-              </Badge>
+      <Paper square={true} sx={{ pb: 10 }}>
+        <CardContent sx={{ display: "flex", justifyContent: "center", py: 4 }}>
+          <div>
+            <Box typography="h1" letterSpacing={1} color="#011e4b">
+              {name}
             </Box>
-            <Divider sx={{ marginX: 16, marginTop: 1 }} />
-          </Box>
-
-          <Container sx={{ pt: 7 }}>
-            <Stack
-              direction="row"
-              justifyContent="space-evenly"
-              alignItems="stretch"
-              spacing={0}
-              sx={{ flexWrap: "wrap" }}
-            >
-              {" "}
-              {badgesWithSrc.map((item) => (
-                <Card sx={{ boxShadow: 3, maxWidth: 300 }}>
-                  <CardContent
-                    sx={{
-                      height: "auto",
-                      width: "auto",
-                      mx: 1,
-                      my: 1,
-                      px: 1,
-                      py: 1,
-                      paddingBottom: 1,
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <CardMedia
-                      sx={{
-                        maxWidth: 97,
-                        minWidth: 95,
-                        justifyContent: "center",
-                        pr: 3,
-                      }}
-                      component="img"
-                      height="auto"
-                      width="auto"
-                      image={item.url}
-                      alt={item.title}
-                    />
-
-                    <div>
-                      <Box
-                        typography="h4"
-                        textAlign="center"
-                        sx={{ fontWeight: 500 }}
-                      >
-                        {item.name}
-                      </Box>
-                      <Box typography="h6" sx={{ wrap: false }}>
-                        {item.title}
-                      </Box>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </Stack>
-          </Container>
-
+            <Box display="flex">
+              <Box style={theme.custom.profile.subHeader}>{title}</Box>
+            </Box>
+          </div>
+        </CardContent>
+        <Box>
           <Box
-            sx={{ display: "flex", justifyContent: "center", paddingTop: 2 }}
+            sx={{ display: "flex", justifyContent: "center", paddingTop: 5 }}
           >
             <Box
               typography="h3"
@@ -175,7 +86,7 @@ export function Profile() {
                 fontWeight: 500,
               }}
             >
-              Missions
+              Badges
             </Box>
 
             <Badge
@@ -184,81 +95,189 @@ export function Profile() {
               overlap="circular"
             >
               <Avatar
-                src={TrumidPatch}
-                alt="patch"
-                sx={{ width: "auto", height: "auto", maxWidth: 45, pb: 1 }}
+                src={Trumid}
+                alt="badge"
+                sx={{
+                  pb: 1,
+                  objectFit: "contain",
+                  width: "100%",
+                  height: "2vw",
+                }}
               />
             </Badge>
           </Box>
           <Divider sx={{ marginX: 16, marginTop: 1 }} />
+        </Box>
 
-          <Container sx={{ pt: 7 }}>
+        <Container sx={{ pt: 7 }}>
+          <Box
+            sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+            alignItems="stretch"
+          >
+            {badgesWithSrc.map((item) => (
+              //  <Grid item sx={{alignItems: 'stretch'}}>
+              <Grid item component={Card} xs sx={{ mb: 6 }}>
+                {/* <Card sx={{alignItems: 'stretch'}}> */}
+                <CardHeader
+                  titleTypographyProps={{
+                    variant: "h4",
+                    noWrap: "true",
+                    color: "#fff",
+                    pl: 3,
+                  }}
+                  title={item.name}
+                  subheaderTypographyProps={{
+                    variant: "caption",
+                    color: "#ff9100",
+                    noWrap: "true",
+                    pl: 5,
+                  }}
+                  subheader={item.title}
+                  sx={{
+                    backgroundColor: "#011e4b",
+                    width: "100%",
+                    height: "3vw",
+                    borderBottom: "3px solid ",
+                    borderColor: "#ff9100",
+                    pt: 3,
+                    pb: 2,
+                    pl: 2,
+                    display: "block",
+                    // objectFit: "cover",
+                    marginTop: "30",
+                  }}
+                />
+                <CardMedia
+                  sx={{
+                    // height: "200px",
+                    // height: 140,
+                    // objectFit: "unset",
+                    // paddingTop: '56.25%',
+                    objectFit: "contain",
+                    width: "100%",
+                    height: "11vw",
+                    // objectFit: "cover",
+                    marginTop: "10px",
+                    marginBottom: "5px",
+                    // maxWidth: 97,
+                    // minWidth: 95,
+                    // maxHeight: 100,
+                    justifyContent: "center",
+                    // pr: 3,
+                  }}
+                  component="img"
+                  height="auto"
+                  // maxHeight="180px"
+                  width="auto"
+                  image={item.url}
+                  alt={item.title}
+                />
+                {/* </Card> */}
+              </Grid>
+            ))}
+          </Box>
+        </Container>
 
-            <Stack
-              direction="row"
-              justifyContent="space-evenly"
-              alignItems="stretch"
-              spacing={0}
-              sx={{ flexWrap: "wrap" }}
-            >
-              {" "}
-              {projectsWithSrc.map((item) => (
-                <Card sx={{ boxShadow: 3, maxWidth: 300 }}>
-                  <CardContent
-                    sx={{
-                      height: "auto",
-                      width: "auto",
-                      mx: 1,
-                      my: 1,
-                      px: 1,
-                      py: 1,
-                      paddingBottom: 1,
-                      display: "flex",
-                      justifyContent: "center",
+        <Box sx={{ display: "flex", justifyContent: "center", paddingTop: 6 }}>
+          <Box
+            typography="h3"
+            sx={{
+              alignSelf: "flex-end",
+              paddingRight: 2,
+              letterSpacing: 0.5,
+              color: "#011e4b",
+              fontWeight: 500,
+            }}
+          >
+            Missions
+          </Box>
+
+          <Badge
+            badgeContent={profileInfo.projects.length}
+            color="secondary"
+            overlap="circular"
+          >
+            <Avatar
+              src={TrumidPatch}
+              alt="patch"
+              sx={{ pb: 1, objectFit: "contain", width: "100%", height: "2vw" }}
+            />
+          </Badge>
+        </Box>
+        <Divider sx={{ marginX: 16, marginTop: 1 }} />
+
+        <Container sx={{ pt: 7 }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gridAutoFlow: "row",
+            }}
+            alignItems="stretch"
+          >
+            {projectsWithSrc.map((item) => (
+              <>
+                <Grid item component={Card} xs sx={{ mb: 6 }}>
+                  {/* <Card sx={{alignItems: 'stretch'}}> */}
+                  <CardHeader
+                    titleTypographyProps={{
+                      variant: "h4",
+                      noWrap: "true",
+                      color: "#fff",
+                      pl: 3,
                     }}
-                  >
-              
-                    <Link href={`/project/${item.id}`}>
-                      <CardMedia
-                        sx={{
-                          maxWidth: 97,
-                          minWidth: 95,
-                          justifyContent: "center",
-                          alignItems: "center",
-                          pr: 3,
-                        }}
-                        component="img"
-                        height="auto"
-                        width="auto"
-                        image={item.url}
-                        alt={item.title}
-                      />
-                    </Link>
-                    <div>
-                      <Box
-                        typography="h4"
-                        textAlign="center"
-                        sx={{ fontWeight: 500 }}
-                      >
-                        <Link href={`/project/${item.id}`} underline="none">
-                          {item.name}
-                        </Link>
-                      </Box>
+                    title={item.name}
+                    subheaderTypographyProps={{
+                      variant: "caption",
+                      color: "#ff9100",
+                      noWrap: "true",
+                      overflow: "hidden",
+                      pl: 5,
+                      // align: "inherit",
+                    }}
+                    subheader={item.desc}
+                    sx={{
+                      backgroundColor: "#011e4b",
+                      width: "100%",
+                      height: "3vw",
+                      borderBottom: "3px solid ",
+                      borderColor: "#ff9100",
+                      pt: 3,
+                      pb: 2,
+                      margin: "auto",
+                      display: "block",
+                      pl: 2,
 
-                      <Box
-                        typography="h6"
-                        textAlign="center"
-                        sx={{ wrap: false }}
-                      >
-                        {item.desc}
-                      </Box>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </Stack>
-          </Container>
-        </Paper>
+                      // ml: 1,
+                      // boxSizing: "content-box",
+                      // objectFit: "cover",
+                      marginTop: "30",
+                    }}
+                  />
+                  <CardMedia
+                    sx={{
+                      objectFit: "contain",
+                      width: "100%",
+                      height: "11vw",
+                      // objectFit: "cover",
+                      marginTop: "10px",
+                      marginBottom: "5px",
+
+                      justifyContent: "center",
+                      // pr: 3,
+                    }}
+                    component="img"
+                    height="auto"
+                    width="auto"
+                    image={item.url}
+                    alt={item.title}
+                  />
+                </Grid>
+              </>
+            ))}
+          </Box>
+        </Container>
+      </Paper>
     </Box>
   );
 }

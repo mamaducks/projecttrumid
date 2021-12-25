@@ -106,12 +106,12 @@ const theme = responsiveFontSizes(
             justifyContent: "center",
             margin: "auto",
             borderRadius: 10,
-            width: "90%",
-            paddingTop: 20,
+            // width: "90%",
+            // paddingTop: 20,
             paddingBottom: 5,
             marginTop: 5,
-            marginBottom: 30,
-            display: "flex",
+            // marginBottom: 30,
+            // display: "flex",
           },
           title: {
             color: "green",
@@ -119,28 +119,31 @@ const theme = responsiveFontSizes(
         },
       },
 
-      MuiCardContent: {
-        styleOverrides: {
-        root: {
-          "&:last-child": {
-            paddingBottom: 10
-          },
-        },
+    //   MuiCardContent: {
+    //     styleOverrides: {
+    //     root: {
+    //       "&:last-child": {
+    //         paddingBottom: 10
+    //       },
+    //     },
 
-      },
-    },
+    //   },
+    // },
 
       MuiCardHeader: {
+      
         styleOverrides: {
           root: {
             display: "flex",
             flexDirection: "column",
-            paddingBottom: 5,
+            // paddingBottom: 5,
+            padding: 0,
           },
           content: {
             action: {
               alignSelf: "flex-start",
             },
+          
             // padding: 20
           },
         },
