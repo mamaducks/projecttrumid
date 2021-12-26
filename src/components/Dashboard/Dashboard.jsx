@@ -22,6 +22,23 @@ import { getAllProfileInfos } from "../../model/profile";
 import TrumidArrows from "../../orangearrowright.svg";
 import TrumidArrowsBlue from "../../bluearrowright.svg";
 
+import Badge from "@mui/material/Badge";
+import Avatar from "@mui/material/Avatar";
+import TrumidArrow from "../../bluearrowright.svg";
+import TrumidArrowsOrange from "../../orangearrowright.svg";
+import {
+  CardHeader,
+  Tooltip,
+  Paper,
+} from "@mui/material";
+
+
+import TrumidPatch from "../../patchtrumid.svg";
+
+import TrumidAvatar from "../../trumidavatarbadge.svg";
+
+
+
 function ShuffleArray() {
   const projectsRandom = useRecoilValue(getAllProjectInfos);
 
@@ -54,7 +71,7 @@ export function DashboardNew() {
       <AppBar />
 
       <Container>
-        <Grid item>
+        <Grid item pb={10}>
           <Box alignItems="center">
             <CardContent
               sx={{
@@ -96,7 +113,7 @@ export function DashboardNew() {
           </Box>
         </Grid>
       </Container>
-
+{/* 
       <Container sx={{ pt: 20 }}>
         <Box marginLeft={8} pl={3} fontSize="2rem" lineHeight={1}>
           <img
@@ -252,7 +269,217 @@ export function DashboardNew() {
             </Stack>
           ))}
         </Grid>
-      </Container>
+      </Container> */}
+      <Grid item display="flex" alignItems="center" justifyContent="center">
+            <img
+              src={TrumidArrows}
+              alt="mission"
+              height="30vw"
+              width="auto"
+              alignSelf="center"
+            />
+
+            <Box pl={2} typography="h3" color="#011e4b">
+              Current Missions
+            </Box>
+          </Grid>
+
+          <Divider sx={{ marginX: 16, mt: 1, mb: 5 }} />
+
+          <Container sx={{ pt: 7 }} maxWidth="lg">
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gridAutoFlow: "row",
+              }}
+            >
+              {projectsWithSrc.map((item) => (
+                <Grid item component={Card} xs sx={{ mb: 6 }}>
+                  <Link href={`/project/${item.id}`} underline="none">
+                    <CardHeader
+                      titleTypographyProps={{
+                        variant: "h5",
+                        noWrap: "true",
+                        color: "#fff",
+                        mr: 8,
+                        ml: 4,
+                      }}
+                      title={item.name}
+                      subheaderTypographyProps={{
+                        variant: "caption",
+                        color: "#ff9100",
+                        noWrap: "true",
+                        mr: 8,
+                        ml: 4,
+                      }}
+                      subheader={item.desc}
+                      sx={{
+                        backgroundColor: "#011e4b",
+                        width: "100%",
+                        height: "3vw",
+                        borderBottom: "3px solid ",
+                        borderColor: "#ff9100",
+                        pt: 3,
+                        pb: 2,
+                        margin: "auto",
+                        display: "block",
+                        pl: 2,
+
+                        marginTop: "30",
+                      }}
+                    />
+                    <Tooltip title="click to view">
+                      <CardMedia
+                        sx={{
+                          objectFit: "contain",
+                          width: "100%",
+                          height: "9vw",
+                          marginTop: "10px",
+                          marginBottom: "5px",
+
+                          justifyContent: "center",
+                        }}
+                        component="img"
+                        height="auto"
+                        width="auto"
+                        image={item.url}
+                        alt={item.title}
+                      />
+                    </Tooltip>
+                  </Link>
+                </Grid>
+              ))}
+            </Box>
+          </Container>
+
+
+
+      <Grid item display="flex" alignItems="center" justifyContent="center" pt={12}>
+            <img
+              src={TrumidArrowsOrange}
+              alt="mission"
+              height="30vw"
+              width="auto"
+              alignSelf="center"
+            />
+
+            <Box pl={2} typography="h3" color="#011e4b">
+            Team Members
+            </Box>
+          </Grid>
+
+          <Divider sx={{ marginX: 16, mt: 1, mb: 5 }} />
+
+          <Container sx={{ pt: 7 }} maxWidth="lg">
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gridAutoFlow: "row",
+              }}
+            >
+              {people.map((item) => (
+                <Grid item component={Card} xs sx={{ mb: 6 }}>
+                  <Link href={`/profile/${item.id}`} underline="none">
+                    <CardHeader
+                      titleTypographyProps={{
+                        variant: "h5",
+                        noWrap: "true",
+                        color: "#fff",
+                        mr: 8,
+                        ml: 4,
+                      }}
+                      title={item.name}
+                      subheaderTypographyProps={{
+                        variant: "caption",
+                        color: "#ff9100",
+                        noWrap: "true",
+                        mr: 8,
+                        ml: 4,
+                      }}
+                      subheader={item.title}
+                      sx={{
+                        backgroundColor: "#011e4b",
+                        width: "100%",
+                        height: "3vw",
+                        borderBottom: "3px solid ",
+                        borderColor: "#ff9100",
+                        pt: 3,
+                        pb: 2,
+                        margin: "auto",
+                        display: "block",
+                        pl: 2,
+
+                        marginTop: "30",
+                      }}
+                    />
+                     <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          paddingTop: 5,
+                        }}
+                      >
+                        <Badge
+                          badgeContent={item.projects.length}
+                          color="secondary"
+                          overlap="circular"
+
+                        >
+                          <Avatar
+                            src={TrumidPatch}
+                            alt="badge"
+                            sx={{
+                              width: "auto",
+                              height: "auto",
+                              maxWidth: 34,
+                              pb: 1,
+                            }}
+                          />
+                        </Badge>
+                        <Box sx={{ pl: 2 }}>
+                          <Badge
+                            badgeContent={item.badges.length}
+                            color="secondary"
+                            overlap="circular"
+                          >
+                            <Avatar
+                              src={TrumidAvatar}
+                              alt="badge"
+                              sx={{
+                                width: "auto",
+                                height: "auto",
+                                maxWidth: 34,
+                                pb: 1,
+                              }}
+                            />
+                          </Badge>
+                        </Box>
+                        </Box>
+                    {/* <Tooltip title="click to view">
+                      <CardMedia
+                        sx={{
+                          objectFit: "contain",
+                          width: "100%",
+                          height: "9vw",
+                          marginTop: "10px",
+                          marginBottom: "5px",
+
+                          justifyContent: "center",
+                        }}
+                        component="img"
+                        height="auto"
+                        width="auto"
+                        image={item.url}
+                        alt={item.title}
+                      />
+                    </Tooltip> */}
+                  </Link>
+                </Grid>
+              ))}
+            </Box>
+          </Container>
     </div>
   );
 }

@@ -2,9 +2,18 @@ import { useRecoilValue } from "recoil";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 
-import { Card, CardContent, Divider, Paper, Grid } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Container,
+  CardHeader,
+  Tooltip,
+  Divider,
+  Paper,
+  Grid,
+} from "@mui/material";
 import TrumidArrow from "../../bluearrowright.svg";
-import TrumidArrows from "../../trumidarrows.svg";
+import TrumidArrows from "../../orangearrowright.svg";
 import { useMemo } from "react";
 import CardMedia from "@mui/material/CardMedia";
 import { getAllProjectInfos } from "../../model/project";
@@ -33,7 +42,7 @@ export function Projects() {
         <AppBar />
 
         <Paper square={true}>
-          <Grid item>
+          <Grid item pb={10}>
             <Box alignItems="center">
               <CardContent
                 sx={{
@@ -74,56 +83,89 @@ export function Projects() {
               </CardContent>
             </Box>
           </Grid>
-          <Box marginLeft={20} pt={7} pl={3} fontSize="2rem" lineHeight={1}>
+
+          <Grid item display="flex" alignItems="center" justifyContent="center">
             <img
-              src={TrumidArrow}
+              src={TrumidArrows}
               alt="mission"
-              width={27}
-              height={27}
+              height="30vw"
+              width="auto"
               alignSelf="center"
-            />{" "}
-            Current Missions
-          </Box>
+            />
+
+            <Box pl={2} typography="h3" color="#011e4b">
+              Current Missions
+            </Box>
+          </Grid>
+
           <Divider sx={{ marginX: 16, mt: 1, mb: 5 }} />
-          {projectsWithSrc.map((item) => (
-            <Card sx={{ width: "auto", justifyContent: "center" }}>
-              <CardContent
-                sx={{
-                  display: "flex",
-                  color: "primary",
-                  justifyContent: "center",
-                  pt: 5,
-                }}
-              >
-                <Link href={`/project/${item.id}`}>
-                  <CardMedia
-                    component="img"
-                    image={item.url}
-                    alt={item.name}
-                    sx={{
-                      objectFit: "unset",
-                      gap: 3,
-                      width: "auto",
-                      alignSelf: "auto",
-                    }}
-                  />
-                </Link>
 
-                <Box alignSelf="center" pl={5}>
-                  <Box typography="h2" color="#011e4b">
-                    <Link href={`/project/${item.id}`} underline="none">
-                      {item.name}
-                    </Link>
-                  </Box>
+          <Container sx={{ pt: 7 }} maxWidth="lg">
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gridAutoFlow: "row",
+              }}
+            >
+              {projectsWithSrc.map((item) => (
+                <Grid item component={Card} xs sx={{ mb: 6 }}>
+                  <Link href={`/project/${item.id}`} underline="none">
+                    <CardHeader
+                      titleTypographyProps={{
+                        variant: "h5",
+                        noWrap: "true",
+                        color: "#fff",
+                        mr: 8,
+                        ml: 4,
+                      }}
+                      title={item.name}
+                      subheaderTypographyProps={{
+                        variant: "caption",
+                        color: "#ff9100",
+                        noWrap: "true",
+                        mr: 8,
+                        ml: 4,
+                      }}
+                      subheader={item.desc}
+                      sx={{
+                        backgroundColor: "#011e4b",
+                        width: "100%",
+                        height: "3vw",
+                        borderBottom: "3px solid ",
+                        borderColor: "#ff9100",
+                        pt: 3,
+                        pb: 2,
+                        margin: "auto",
+                        display: "block",
+                        pl: 2,
 
-                  <Box typography="h5" color="#ff9100" flexWrap="wrap">
-                    {item.desc}
-                  </Box>
-                </Box>
-              </CardContent>
-            </Card>
-          ))}
-          s
+                        marginTop: "30",
+                      }}
+                    />
+                    <Tooltip title="click to view">
+                      <CardMedia
+                        sx={{
+                          objectFit: "contain",
+                          width: "100%",
+                          height: "9vw",
+                          marginTop: "10px",
+                          marginBottom: "5px",
+
+                          justifyContent: "center",
+                        }}
+                        component="img"
+                        height="auto"
+                        width="auto"
+                        image={item.url}
+                        alt={item.title}
+                      />
+                    </Tooltip>
+                  </Link>
+                </Grid>
+              ))}
+            </Box>
+          </Container>
         </Paper>
       </Box>
     </div>

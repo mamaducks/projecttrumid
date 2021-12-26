@@ -10,6 +10,7 @@ import {
   CardMedia,
   Stack,
   CardHeader,
+  Tooltip,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -68,7 +69,19 @@ export function Profile() {
               {name}
             </Box>
             <Box display="flex">
-              <Box style={theme.custom.profile.subHeader}>{title}</Box>
+              <Box
+                sx={{
+                  alignContent: "flex-start",
+                  flexGrow: 1,
+                  fontSize: "h4",
+                  alignItems: "center",
+                  color: "#ff9100",
+                  letterSpacing: 1,
+                  paddingLeft: 3,
+                }}
+              >
+                {title}
+              </Box>
             </Box>
           </div>
         </CardContent>
@@ -109,7 +122,7 @@ export function Profile() {
           <Divider sx={{ marginX: 16, marginTop: 1 }} />
         </Box>
 
-        <Container sx={{ pt: 7 }}>
+        <Container sx={{ pt: 7 }} maxWidth="lg">
           <Box
             sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
             alignItems="stretch"
@@ -123,14 +136,14 @@ export function Profile() {
                     variant: "h4",
                     noWrap: "true",
                     color: "#fff",
-                    pl: 3,
+                    // pl: 2,
                   }}
                   title={item.name}
                   subheaderTypographyProps={{
                     variant: "caption",
                     color: "#ff9100",
                     noWrap: "true",
-                    pl: 5,
+                    // pl: 2,
                   }}
                   subheader={item.title}
                   sx={{
@@ -141,37 +154,40 @@ export function Profile() {
                     borderColor: "#ff9100",
                     pt: 3,
                     pb: 2,
-                    pl: 2,
+                    pl: 3,
                     display: "block",
                     // objectFit: "cover",
                     marginTop: "30",
                   }}
                 />
-                <CardMedia
-                  sx={{
-                    // height: "200px",
-                    // height: 140,
-                    // objectFit: "unset",
-                    // paddingTop: '56.25%',
-                    objectFit: "contain",
-                    width: "100%",
-                    height: "11vw",
-                    // objectFit: "cover",
-                    marginTop: "10px",
-                    marginBottom: "5px",
-                    // maxWidth: 97,
-                    // minWidth: 95,
-                    // maxHeight: 100,
-                    justifyContent: "center",
-                    // pr: 3,
-                  }}
-                  component="img"
-                  height="auto"
-                  // maxHeight="180px"
-                  width="auto"
-                  image={item.url}
-                  alt={item.title}
-                />
+                <Tooltip title={item.title}>
+                  <CardMedia
+                    sx={{
+                      // height: "200px",
+                      // height: 140,
+                      // objectFit: "unset",
+                      // paddingTop: '56.25%',
+                      objectFit: "contain",
+                      width: "100%",
+                      height: "9vw",
+                      // objectFit: "cover",
+                      marginTop: "10px",
+                      marginBottom: "5px",
+                      // maxWidth: 97,
+                      // minWidth: 95,
+                      // maxHeight: 100,
+                      justifyContent: "center",
+
+                      // pr: 3,
+                    }}
+                    component="img"
+                    height="auto"
+                    // maxHeight="180px"
+                    width="auto"
+                    image={item.url}
+                    alt={item.title}
+                  />
+                </Tooltip>
                 {/* </Card> */}
               </Grid>
             ))}
@@ -206,72 +222,84 @@ export function Profile() {
         </Box>
         <Divider sx={{ marginX: 16, marginTop: 1 }} />
 
-        <Container sx={{ pt: 7 }}>
+        <Container sx={{ pt: 7 }} maxWidth="lg">
           <Box
             sx={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
               gridAutoFlow: "row",
+
+              // justifyContent: "center"
             }}
-            alignItems="stretch"
           >
             {projectsWithSrc.map((item) => (
               <>
                 <Grid item component={Card} xs sx={{ mb: 6 }}>
                   {/* <Card sx={{alignItems: 'stretch'}}> */}
-                  <CardHeader
-                    titleTypographyProps={{
-                      variant: "h4",
-                      noWrap: "true",
-                      color: "#fff",
-                      pl: 3,
-                    }}
-                    title={item.name}
-                    subheaderTypographyProps={{
-                      variant: "caption",
-                      color: "#ff9100",
-                      noWrap: "true",
-                      overflow: "hidden",
-                      pl: 5,
-                      // align: "inherit",
-                    }}
-                    subheader={item.desc}
-                    sx={{
-                      backgroundColor: "#011e4b",
-                      width: "100%",
-                      height: "3vw",
-                      borderBottom: "3px solid ",
-                      borderColor: "#ff9100",
-                      pt: 3,
-                      pb: 2,
-                      margin: "auto",
-                      display: "block",
-                      pl: 2,
+                  <Link href={`/project/${item.id}`} underline="none">
+                    <CardHeader
+                      titleTypographyProps={{
+                        variant: "h5",
+                        noWrap: "true",
+                        color: "#fff",
+                        mr: 8,
+                        ml: 4,
+                        // pl: 3,
+                      }}
+                      title={item.name}
+                      subheaderTypographyProps={{
+                        variant: "caption",
+                        color: "#ff9100",
+                        noWrap: "true",
+                        mr: 8,
+                        ml: 4,
+                        // overflow: "hidden",
+                        // pl: 5,
+                        // align: "inherit",
+                      }}
+                      subheader={item.desc}
+                      sx={{
+                        backgroundColor: "#011e4b",
+                        width: "100%",
+                        height: "3vw",
+                        borderBottom: "3px solid ",
+                        borderColor: "#ff9100",
+                        pt: 3,
+                        pb: 2,
+                        margin: "auto",
+                        display: "block",
+                        pl: 2,
+                        // mr: 20,
+                        // pr: 3,
+                        // mr: 10,
 
-                      // ml: 1,
-                      // boxSizing: "content-box",
-                      // objectFit: "cover",
-                      marginTop: "30",
-                    }}
-                  />
-                  <CardMedia
-                    sx={{
-                      objectFit: "contain",
-                      width: "100%",
-                      height: "11vw",
-                      // objectFit: "cover",
-                      marginTop: "10px",
-                      marginBottom: "5px",
+                        // ml: 1,
+                        // boxSizing: "content-box",
+                        // objectFit: "cover",
+                        marginTop: "30",
+                      }}
+                    />
+                    <Tooltip title="click to view">
+                      <CardMedia
+                        sx={{
+                          objectFit: "contain",
+                          width: "100%",
+                          height: "9vw",
+                          // objectFit: "cover",
+                          marginTop: "10px",
+                          marginBottom: "5px",
 
-                      justifyContent: "center",
-                      // pr: 3,
-                    }}
-                    component="img"
-                    height="auto"
-                    width="auto"
-                    image={item.url}
-                    alt={item.title}
-                  />
+                          justifyContent: "center",
+                          // pr: 3,
+                        }}
+                        component="img"
+                        height="auto"
+                        width="auto"
+                        image={item.url}
+                        alt={item.title}
+                      />
+                    </Tooltip>
+                  </Link>
                 </Grid>
               </>
             ))}
