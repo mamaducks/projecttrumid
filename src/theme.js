@@ -76,15 +76,15 @@ const theme = responsiveFontSizes(
       profile: {
       
 
-        subHeader: {
-          alignContent: "flex-start",
-          flexGrow: 1,
-          fontSize: "h5",
-          alignItems: "center",
-          color: "#ff9100",
-          letterSpacing: 1,
-          paddingLeft: 3,
-        },
+        // subHeader: {
+        //   alignContent: "flex-start",
+        //   flexGrow: 1,
+        //   fontSize: "h5",
+        //   alignItems: "center",
+        //   color: "#ff9100",
+        //   letterSpacing: 1,
+        //   paddingLeft: 3,
+        // },
         grids: {
           justifyContent: "space-around",
           paddingY: 2,
