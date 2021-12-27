@@ -134,26 +134,41 @@ const theme = responsiveFontSizes(
       
         styleOverrides: {
           root: {
-            display: "flex",
-            flexDirection: "column",
+            // display: "flex",
+            // flexDirection: "column",
             // paddingBottom: 5,
             padding: 0,
+            // alignItems: "center"
           },
-          content: {
-            action: {
-              alignSelf: "flex-start",
-            },
+          // content: {
+          //   action: {
+          //     alignSelf: "flex-start",
+          //   },
           
             // padding: 20
-          },
+          // },
         },
+      },
+
+      MuiCardContent: {
+      
+        styleOverrides: {
+          root: {
+            // display: "flex",
+            // flexDirection: "column",
+            // paddingBottom: 5,
+            "&:last-child": {
+            padding: 10,
+            }
+          },
+        }
       },
 
       MuiPaper: {
         styleOverrides: {
           root: {
             margin: "auto",
-            width: "90%",
+            // width: "90%",
           },
 
           "&.MuiAppBar-root": {
