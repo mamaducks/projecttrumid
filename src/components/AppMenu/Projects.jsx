@@ -3,10 +3,9 @@ import Box from "@mui/material/Box";
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { getAllProjectInfos } from "../../model/project";
-import AppBar from "../Dashboard/AppBar";
 import { GridCard, GridContainer } from "../ReusedComponents/GridCard";
-import { PageHeader } from "../ReusedComponents/PageHeader";
-
+import { PageHeader, ProjectHeader } from "../ReusedComponents/PageHeader";
+import TrumidPatch from "../../patchtrumid.svg"
 export function Projects() {
   const projects = useRecoilValue(getAllProjectInfos);
 
@@ -23,25 +22,23 @@ export function Projects() {
 
   return (
     <div>
-      <Box sx={{ backgroundColor: "#001e4b" }}>
-        <AppBar />
 
         <Paper square={true}>
-          <PageHeader title="Trumid Center" subheader="Mission Dashboard" />
-
+          <PageHeader image={TrumidPatch} imageTitle="Mssion" header="Trumid Center" subheader="Our Missions" />
           <GridContainer>
             {projectsWithSrc.map((item) => (
               <GridCard
                 link={`/project/${item.id}`}
                 title={item.name}
-                subheader={item.desc}
+                // subheader={item.desc}
                 image={item.url}
                 imageTitle={item.title}
+                toolTip={item.desc}
+                bottomText={item.desc}
               />
             ))}
           </GridContainer>
         </Paper>
-      </Box>
     </div>
   );
 }

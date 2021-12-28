@@ -11,8 +11,9 @@ import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
 import TrumidArrow from "../../bluearrowright.svg";
 import Trumid from "../../trumid.svg";
+import TrumidLogo from "../../trumidSiteLogo.svg";
 
-export default function ButtonAppBar() {
+export default function TrumidAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
@@ -30,7 +31,7 @@ export default function ButtonAppBar() {
           <Box flexGrow={1}>
             <Link href={"/"} underline="none">
               {" "}
-              <img src={Trumid} alt="badge" height={48} width={48} />
+              <img src={TrumidLogo} alt="badge" width="150vh" height="100%" />
             </Link>
           </Box>
 

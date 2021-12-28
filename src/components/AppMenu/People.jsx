@@ -7,8 +7,7 @@ import { useRecoilValue } from "recoil";
 import { getAllProfileInfos } from "../../model/profile";
 import TrumidPatch from "../../patchtrumid.svg";
 import Trumid from "../../trumidavatarbadge.svg";
-import AppBar from "../Dashboard/AppBar";
-import { GridContainer } from "../ReusedComponents/GridCard";
+import { GridContainer, PeopleCard, GridCard } from "../ReusedComponents/GridCard";
 import { PageHeader } from "../ReusedComponents/PageHeader";
 
 export function People() {
@@ -16,12 +15,26 @@ export function People() {
 
   return (
     <Box>
-      <AppBar />
-
-      <PageHeader title="Trumid Center" subheader="Team Members" />
+      <PageHeader
+        image={TrumidPatch}
+        imageTitle="Mssion"
+        header="Trumid Center"
+        subheader="Team Members"
+      />
 
       <GridContainer>
         {people.map((item) => (
+          <GridCard
+            link={`/profile/${item.id}`}
+            title={item.name}
+            subheader={item.title}
+            projectsCount={item.projects.length}
+            badgesCount={item.badges.length}
+            isPeople
+          />
+        ))}
+
+        {/* {people.map((item) => (
           <Grid item component={Card} xs sx={{ mb: 6, pb: 0, m: 3 }}>
             <Link href={`/profile/${item.id}`} underline="none">
               <CardHeader
@@ -47,7 +60,7 @@ export function People() {
                   borderColor: "#ff9100",
                   background: "linear-gradient( #011e4b, #23467e)",
                   pt: 3,
-                  pb: 2,
+                  paddingBottom: "2px",
                   margin: "auto",
                   display: "block",
                 }}
@@ -59,7 +72,6 @@ export function People() {
                   justifyContent: "center",
                   paddingTop: 5,
                   pb: 3,
-                  // px: 8,
                   alignItems: "center",
                 }}
               >
@@ -101,7 +113,7 @@ export function People() {
               </Box>
             </Link>
           </Grid>
-        ))}
+        ))} */}
       </GridContainer>
     </Box>
   );

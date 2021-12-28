@@ -7,7 +7,7 @@ import TrumidArrows from "../../orangearrowright.svg";
 export function SectionHeader({ badgeContent, children, icon }) {
   return (
     <>
-      <Grid item display="flex" alignItems="center" pl={3} pt={8} pb={2}>
+      <Grid item display="flex" alignItems="center" pl={3} pt={10} pb={2}>
         <img
           src={TrumidArrows}
           alt="mission"
@@ -34,10 +34,6 @@ export function SectionHeader({ badgeContent, children, icon }) {
                 height: "2vw",
                 minHeight: "33px",
                 width: "auto",
-                //   objectFit: "contain",
-                //   width: "100%",
-                //   height: "3vw",
-                //   fontSize: "1.5vw"
               }}
             />
           </Badge>

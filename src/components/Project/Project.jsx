@@ -1,15 +1,11 @@
-import { CardContent } from "@mui/material";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
 import * as React from "react";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProjectInfo } from "../../model/project";
-import AppBar from "../Dashboard/AppBar";
-import { ProfileAvatar } from "../Profile/ProfileAvatar";
-import { ProjectHeader } from "../ReusedComponents/PageHeader";
+import { GridContainer, GridCard } from "../ReusedComponents/GridCard";
+import { PageHeader } from "../ReusedComponents/PageHeader";
 import { SectionHeader } from "../ReusedComponents/SectionHeader";
 
 export function Project() {
@@ -33,52 +29,33 @@ export function Project() {
 
   return (
     <div>
-      <AppBar />
-
-      <ProjectHeader
+      <PageHeader
         image={url}
         imageTitle={name}
         header={name}
         subheader={desc}
       />
 
+      
+
       <Container maxWidth="lg">
+        
         {roles.map((item) => (
           <>
             <SectionHeader>{item.name}s</SectionHeader>
 
-            <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
-                gridAutoFlow: "row",
-                columnGap: 1,
-                rowGap: 5,
-                pt: 6,
-                pb: 5,
-              }}
-            >
+            <GridContainer>
               {item.people.map((item) => (
-                <Container maxWidth="md">
-                  <CardContent>
-                    <Link
-                      href={`/profile/${item.id}`}
-                      underline="none"
-                      fontSize="1rem"
-                      fontWeight="600"
-                      noWrap="true"
-                      sx={{
-                        overflow: "visible",
-                        textTransform: "capitalize",
-                        fontVariant: "subtitle1",
-                      }}
-                    >
-                      <ProfileAvatar profileId={item.id} /> {item.name}
-                    </Link>
-                  </CardContent>
-                </Container>
+                <GridCard
+                  link={`/profile/${item.id}`}
+                  title={item.name}
+                  subheader={item.title}
+                  projectsCount={item.projects.length}
+                  badgesCount={item.badges.length}
+                  isPeople
+                />
               ))}
-            </Box>
+            </GridContainer>
           </>
         ))}
       </Container>

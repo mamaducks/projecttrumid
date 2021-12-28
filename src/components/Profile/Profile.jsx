@@ -5,9 +5,8 @@ import { getProfileInfo } from "../../model/profile";
 import Container from "@mui/material/Container";
 import TrumidPatch from "../../patchtrumid.svg";
 import Trumid from "../../trumidavatarbadge.svg";
-import AppBar from "../Dashboard/AppBar";
 import { GridCard, GridContainer } from "../ReusedComponents/GridCard";
-import { PageHeader } from "../ReusedComponents/PageHeader";
+import { PageHeader, ProjectHeader } from "../ReusedComponents/PageHeader";
 import { SectionHeader } from "../ReusedComponents/SectionHeader";
 
 export function Profile() {
@@ -44,27 +43,29 @@ export function Profile() {
 
   return (
     <div>
-      <AppBar />
-
-      <PageHeader title={name} subheader={title} />
+      <PageHeader
+        image={TrumidPatch}
+        imageTitle={"missions"}
+        header={name}
+        subheader={title}
+      />
 
       <Container maxWidth="lg">
-        <SectionHeader
-          icon={Trumid}
-          badgeContent={profileInfo.badges.length}
-        >
+        <SectionHeader icon={Trumid} badgeContent={profileInfo.badges.length}>
           Badges
         </SectionHeader>
 
         <GridContainer>
           {badgesWithSrc.map((item) => (
             <GridCard
-              link={`/project/${item.id}`}
+              // link={`/project/${item.id}`}
               title={item.name}
-              subheader={item.title}
+              // subheader={item.title}
               image={item.url}
               imageTitle={item.title}
-              toolTip={"click to view"}
+              // toolTip={"You are Awesome"}
+              bottomText={item.title}
+              bottomSubText={profileInfo.badges.desc}
             />
           ))}
         </GridContainer>
@@ -85,6 +86,7 @@ export function Profile() {
               image={item.url}
               imageTitle={item.title}
               toolTip={"click to view"}
+              bottomText={item.desc}
             />
           ))}
         </GridContainer>
