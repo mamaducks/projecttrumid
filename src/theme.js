@@ -33,10 +33,10 @@ const theme = responsiveFontSizes(
     },
 
     typography: {
-      fontFamily: ["Cairo", "Raleway", "Open Sans"].join(","),
+      fontFamily: ["Quicksand", "Raleway", "Open Sans"].join(","),
       h1: {
         fontSize: "3rem",
-        fontFamily: "Cairo",
+        fontFamily: "Quicksand",
         fontStyle: "bold",
       },
       h2: {
@@ -47,35 +47,28 @@ const theme = responsiveFontSizes(
       },
       h3: {
         fontSize: "2rem",
-        fontFamily: "Cairo",
-
+        fontFamily: "Quicksand",
       },
       h4: {
         fontSize: "1.5rem",
-        fontFamily: "Cairo",
+        fontFamily: "Quicksand",
       },
       h5: {
         fontSize: "1rem",
-        fontFamily: "Cairo",
+        fontFamily: "Quicksand",
         fontWeight: 300,
         fontStyle: "bold",
       },
       h6: {
         fontSize: "0.875rem",
-        fontFamily: "Cairo",
+        fontFamily: "Quicksand",
       },
       caption: {
         fontSize: "0.75rem",
       },
     },
     custom: {
-      
-
-
-       
       profile: {
-      
-
         // subHeader: {
         //   alignContent: "flex-start",
         //   flexGrow: 1,
@@ -91,13 +84,8 @@ const theme = responsiveFontSizes(
           paddingX: 5,
           boxSizing: "border-box",
         },
-
       },
-
-        
-       
-        },
-    
+    },
 
     components: {
       MuiCard: {
@@ -108,8 +96,8 @@ const theme = responsiveFontSizes(
             borderRadius: 10,
             // width: "90%",
             // paddingTop: 20,
-            paddingBottom: 5,
-            marginTop: 5,
+            // paddingBottom: 5,
+            // marginTop: 5,
             // marginBottom: 30,
             // display: "flex",
           },
@@ -119,49 +107,53 @@ const theme = responsiveFontSizes(
         },
       },
 
-    //   MuiCardContent: {
-    //     styleOverrides: {
-    //     root: {
-    //       "&:last-child": {
-    //         paddingBottom: 10
-    //       },
-    //     },
+      //   MuiCardContent: {
+      //     styleOverrides: {
+      //     root: {
+      //       "&:last-child": {
+      //         paddingBottom: 10
+      //       },
+      //     },
 
-    //   },
-    // },
+      //   },
+      // },
 
       MuiCardHeader: {
-      
         styleOverrides: {
           root: {
             // display: "flex",
             // flexDirection: "column",
             // paddingBottom: 5,
-            padding: 0,
+             padding: 0,
+             // fontWeight: 700,
             // alignItems: "center"
           },
           // content: {
           //   action: {
           //     alignSelf: "flex-start",
           //   },
-          
-            // padding: 20
+
+          // padding: 20
           // },
         },
       },
 
       MuiCardContent: {
-      
         styleOverrides: {
           root: {
+            // display: "flex",
+            // color: "primary",
+            // justifyContent: "center",
+            // alignContent: "center",
+            // paddingTop: 10,
             // display: "flex",
             // flexDirection: "column",
             // paddingBottom: 5,
             "&:last-child": {
-            padding: 10,
-            }
+              // padding: 10,
+            },
           },
-        }
+        },
       },
 
       MuiPaper: {

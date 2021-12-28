@@ -7,10 +7,12 @@ import { DashboardNew } from "./components/Dashboard/Dashboard";
 import { Profile } from "./components/Profile/Profile";
 import { Project } from "./components/Project/Project";
 import theme from "./theme";
+import TrumidAppBar from "./components/Dashboard/AppBar";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <TrumidAppBar />
       <Routes>
         <Route path="/profile/:profileId" element={<Profile />} />
 
