@@ -2,7 +2,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 const theme = responsiveFontSizes(
   createTheme({
-    spacing: 4,
+    spacing: 3,
     palette: {
       background: {
         default: "#001e4b", //trumidblue
@@ -34,38 +34,45 @@ const theme = responsiveFontSizes(
 
     typography: {
       fontFamily: ["Quicksand", "Raleway", "Open Sans"].join(","),
-      h1: {
-        fontSize: "3rem",
-        fontFamily: "Quicksand",
-        fontStyle: "bold",
-      },
-      h2: {
-        fontSize: "2.5rem",
-        // fontFamily: "Cairo",
-        fontStyle: "bold",
-        fontWeight: 500,
-      },
-      h3: {
-        fontSize: "2rem",
-        fontFamily: "Quicksand",
-      },
-      h4: {
-        fontSize: "1.5rem",
-        fontFamily: "Quicksand",
-      },
-      h5: {
-        fontSize: "1rem",
-        fontFamily: "Quicksand",
-        fontWeight: 300,
-        fontStyle: "bold",
-      },
-      h6: {
-        fontSize: "0.875rem",
-        fontFamily: "Quicksand",
-      },
-      caption: {
-        fontSize: "0.75rem",
-      },
+        h1: {
+          fontSize: "2.5rem",
+          fontFamily: "Quicksand",
+          fontStyle: "bold",
+        },
+        h2: {
+          fontSize: "2rem",
+          // fontFamily: "Cairo",
+          // fontStyle: "bold",
+          // fontWeight: 500,
+        },
+        h3: {
+          fontSize: "1.8rem",
+          fontFamily: "Quicksand",
+        },
+        h4: {
+          fontSize: "1.4rem",
+          fontFamily: "Quicksand",
+        },
+        h5: {
+          fontSize: "1rem",
+        }
+      //   h4: {
+      //     fontSize: "1.5rem",
+      //     fontFamily: "Quicksand",
+      //   },
+      //   h5: {
+      //     fontSize: "1rem",
+      //     fontFamily: "Quicksand",
+      //     fontWeight: 300,
+      //     fontStyle: "bold",
+      //   },
+      //   h6: {
+      //     fontSize: "0.875rem",
+      //     fontFamily: "Quicksand",
+      //   },
+      //   caption: {
+      //     fontSize: "0.75rem",
+      //   },
     },
     custom: {
       profile: {
@@ -85,6 +92,31 @@ const theme = responsiveFontSizes(
           boxSizing: "border-box",
         },
       },
+      sectionHeader: {
+        
+        display: "flex",
+        alignItems: "center",
+        paddingLeft: 14,
+        // paddingTop: 18,
+        paddingBottom: 3,
+      
+        sectionText: {
+          // paddingLeft: 6,
+          // paddingBottom: 1,
+          // paddingRight: 3,
+          // fontSize: "x-large"
+        }},
+        // "&:Box": {
+        //   color: "#011e4b",
+        // },
+        // "&:MuiAvatar": {
+        //   height: "7vw",
+        //   minHeight: "33px",
+        // },
+        // "&:MuiDivider": {
+        //   variant: "middle",
+        // },
+      // },
     },
 
     components: {
@@ -118,15 +150,63 @@ const theme = responsiveFontSizes(
       //   },
       // },
 
+      MuiMenuIcon: {
+        styleOverrides: {
+          root: {
+            size: "large",
+            edge: "start",
+            color: "#fff",
+          },
+        },
+      },
+
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: {
+            minWidth: "30",
+            edge: "start",
+            color: "#fff",
+          },
+        },
+      },
+
       MuiCardHeader: {
         styleOverrides: {
           root: {
-            // display: "flex",
+            color: "#fff",
+            // overflow: "hidden",
+            // whiteSpace: "nowrap",
+            // textOverflow: "ellipsis",
+            noWrap: "true",
+            backgroundColor: "#011e4b",
+            // width: "100%",
+            borderBottom: "3px solid ",
+            borderColor: "#ff9100",
+            display: "block",
             // flexDirection: "column",
             // paddingBottom: 5,
-             padding: 0,
-             // fontWeight: 700,
+            //  padding: 1,
+            // fontWeight: 700,
             // alignItems: "center"
+          },
+          title: {
+            color: "#fff",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            noWrap: "true",
+            fontSize: "larger"
+          },
+          subheader: {
+            color: "#ff9100",
+            noWrap: "true",
+            // ml: 2,
+            fontWeight: "bold",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            display: "block",
+            fontSize: "smaller"
           },
           // content: {
           //   action: {
@@ -141,6 +221,7 @@ const theme = responsiveFontSizes(
       MuiCardContent: {
         styleOverrides: {
           root: {
+            padding: 10,
             // display: "flex",
             // color: "primary",
             // justifyContent: "center",
@@ -150,7 +231,7 @@ const theme = responsiveFontSizes(
             // flexDirection: "column",
             // paddingBottom: 5,
             "&:last-child": {
-              // padding: 10,
+              padding: 14,
             },
           },
         },
@@ -172,6 +253,14 @@ const theme = responsiveFontSizes(
               paddingTop: 0,
             },
           },
+        },
+      },
+
+      MuiBadge: {
+        defaultProps: {
+          overlap: "circular",
+
+          color: "secondary",
         },
       },
 
@@ -197,11 +286,14 @@ const theme = responsiveFontSizes(
 
       MuiLink: {
         styleOverrides: {
+          // underline: "none",
           root: {
-            color: "primary",
-            "&:hover": {
-              color: "#ff9100",
-            },
+            
+            textDecoration: "none",
+            // color: "primary",
+            // "&:hover": {
+            //   color: "#ff9100",
+            // },
           },
         },
       },
@@ -209,7 +301,6 @@ const theme = responsiveFontSizes(
       MuiDivider: {
         styleOverrides: {
           root: {
-            variant: "inset",
             margin: "auto",
 
             backgroundColor: "#ff9100",

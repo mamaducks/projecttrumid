@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProfileInfo } from "../../model/profile";
 import Container from "@mui/material/Container";
-import TrumidPatch from "../../patchtrumid.svg";
-import Trumid from "../../trumidavatarbadge.svg";
-import { GridCard, GridContainer } from "../ReusedComponents/GridCard";
-import { PageHeader, ProjectHeader } from "../ReusedComponents/PageHeader";
-import { SectionHeader } from "../ReusedComponents/SectionHeader";
+import TrumidPatch from "../../utilities/patchtrumid.svg";
+import Trumid from "../../utilities/trumidavatarbadge.svg";
+import { GridCard } from "../Card/GridCard";
+import { GridCardContainer } from "../Card/GridCardContainer";
+import { PageHeader } from "../Headers/PageHeader";
+import { SectionHeader } from "../Headers/SectionHeader";
 
 export function Profile() {
   const { profileId } = useParams();
@@ -48,6 +49,7 @@ export function Profile() {
         imageTitle={"missions"}
         header={name}
         subheader={title}
+        // isCustom
       />
 
       <Container maxWidth="lg">
@@ -55,20 +57,17 @@ export function Profile() {
           Badges
         </SectionHeader>
 
-        <GridContainer>
+        <GridCardContainer>
           {badgesWithSrc.map((item) => (
             <GridCard
-              // link={`/project/${item.id}`}
               title={item.name}
-              // subheader={item.title}
               image={item.url}
               imageTitle={item.title}
-              // toolTip={"You are Awesome"}
               bottomText={item.title}
               bottomSubText={profileInfo.badges.desc}
             />
           ))}
-        </GridContainer>
+        </GridCardContainer>
 
         <SectionHeader
           icon={TrumidPatch}
@@ -77,7 +76,7 @@ export function Profile() {
           Missions
         </SectionHeader>
 
-        <GridContainer>
+        <GridCardContainer>
           {projectsWithSrc.map((item) => (
             <GridCard
               link={`/project/${item.id}`}
@@ -89,7 +88,7 @@ export function Profile() {
               bottomText={item.desc}
             />
           ))}
-        </GridContainer>
+        </GridCardContainer>
       </Container>
     </div>
   );

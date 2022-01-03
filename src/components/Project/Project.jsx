@@ -4,9 +4,10 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProjectInfo } from "../../model/project";
-import { GridContainer, GridCard } from "../ReusedComponents/GridCard";
-import { PageHeader } from "../ReusedComponents/PageHeader";
-import { SectionHeader } from "../ReusedComponents/SectionHeader";
+import { GridCard } from "../Card/GridCard";
+import { GridCardContainer } from "../Card/GridCardContainer";
+import { PageHeader } from "../Headers/PageHeader";
+import { SectionHeader } from "../Headers/SectionHeader";
 
 export function Project() {
   const { projectId } = useParams();
@@ -36,15 +37,12 @@ export function Project() {
         subheader={desc}
       />
 
-      
-
       <Container maxWidth="lg">
-        
         {roles.map((item) => (
           <>
             <SectionHeader>{item.name}s</SectionHeader>
 
-            <GridContainer>
+            <GridCardContainer>
               {item.people.map((item) => (
                 <GridCard
                   link={`/profile/${item.id}`}
@@ -55,7 +53,7 @@ export function Project() {
                   isPeople
                 />
               ))}
-            </GridContainer>
+            </GridCardContainer>
           </>
         ))}
       </Container>

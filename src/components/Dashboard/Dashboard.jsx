@@ -1,25 +1,15 @@
-import { Card, CardHeader, Divider, Grid, Link } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import Badge from "@mui/material/Badge";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import * as React from "react";
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { getAllProfileInfos } from "../../model/profile";
 import { getAllProjectInfos } from "../../model/project";
-import TrumidArrowsOrange from "../../orangearrowright.svg";
-import TrumidPatch from "../../patchtrumid.svg";
-import TrumidAvatar from "../../trumidavatarbadge.svg";
-import {
-  GridCard,
-  GridContainer,
-  PeopleCard,
-} from "../ReusedComponents/GridCard";
-import { PageHeader, ProjectHeader } from "../ReusedComponents/PageHeader";
-import { SectionHeader } from "../ReusedComponents/SectionHeader";
+import { GridCard } from "../Card/GridCard";
+import { GridCardContainer } from "../Card/GridCardContainer";
+import { PageHeader } from "../Headers/PageHeader";
+import { SectionHeader } from "../Headers/SectionHeader";
 
-export function DashboardNew() {
+export function Dashboard() {
   const projects = useRecoilValue(getAllProjectInfos);
   const people = useRecoilValue(getAllProfileInfos);
 
@@ -36,36 +26,30 @@ export function DashboardNew() {
 
   return (
     <div>
-      <PageHeader
-        image={TrumidPatch}
-        imageTitle="Mssion"
-        header="Trumid Center"
-        subheader="Dashboard"
-      />
+      <PageHeader header="Trumid Center" subheader="Dashboard" isTrumid />
 
       <Container>
         <SectionHeader>Recent Missions</SectionHeader>
       </Container>
 
-      <GridContainer>
+      <GridCardContainer>
         {projectsWithSrc.map((item) => (
           <GridCard
             link={`/project/${item.id}`}
             title={item.name}
-            // subheader={item.desc}
             image={item.url}
             imageTitle={item.title}
             toolTip="click to view"
             bottomText={item.desc}
           />
         ))}
-      </GridContainer>
+      </GridCardContainer>
 
       <Container>
         <SectionHeader>Recent Members</SectionHeader>
       </Container>
 
-      <GridContainer>
+      <GridCardContainer>
         {people.map((item) => (
           <GridCard
             link={`/profile/${item.id}`}
@@ -76,7 +60,7 @@ export function DashboardNew() {
             isPeople
           />
         ))}
-      </GridContainer>
+      </GridCardContainer>
     </div>
   );
 }
