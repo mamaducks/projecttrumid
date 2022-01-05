@@ -5,7 +5,7 @@ import TrumidAvatar from "../../utilities/trumidavatarbadge.svg";
 
 const useStyles = makeStyles((theme) => ({
   avatarBadge: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(1),
     width: "auto",
     height: "auto",
   },
@@ -23,7 +23,8 @@ export const ProfileCardContent = ({ projectsCount, badgesCount }) => {
       <CardContent
         sx={{
           display: "flex",
-          justifyContent: "space-evenly",
+          justifyContent: "center",
+          columnGap: 5
         }}
       >
         <Badge badgeContent={projectsCount}>
@@ -33,6 +34,7 @@ export const ProfileCardContent = ({ projectsCount, badgesCount }) => {
             alt="badge"
           />
         </Badge>
+        
         <Badge badgeContent={badgesCount}>
           <Avatar
             className={classes.avatarBadge}

@@ -10,7 +10,7 @@ export const MainCardContent = ({ image, imageTitle, bottomText }) => {
         <CardMedia
           sx={{
             objectFit: "contain",
-            maxHeight: "10vw",
+            maxHeight: "7vw",
             justifyContent: "center",
           }}
           component="img"
@@ -25,15 +25,18 @@ export const MainCardContent = ({ image, imageTitle, bottomText }) => {
           borderTop: "2px solid ",
           borderColor: "#ff9100",
           alignContent: "center",
+          // pb: 0
         }}
       >
-        <Typography
+        <Typography variant= "h5"
           sx={{
             color: "primary",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            variant: "h3",
+            
+            
+            
           }}
         >
           {bottomText}

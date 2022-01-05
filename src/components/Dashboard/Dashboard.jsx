@@ -1,13 +1,13 @@
-import Container from "@mui/material/Container";
 import * as React from "react";
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
+import Container from "@mui/material/Container";
 import { getAllProfileInfos } from "../../model/profile";
 import { getAllProjectInfos } from "../../model/project";
-import { GridCard } from "../Card/GridCard";
-import { GridCardContainer } from "../Card/GridCardContainer";
 import { PageHeader } from "../Headers/PageHeader";
 import { SectionHeader } from "../Headers/SectionHeader";
+import { GridCard } from "../Card/GridCard";
+import { GridCardContainer } from "../Card/GridCardContainer";
 
 export function Dashboard() {
   const projects = useRecoilValue(getAllProjectInfos);
@@ -29,8 +29,10 @@ export function Dashboard() {
       <PageHeader header="Trumid Center" subheader="Dashboard" isTrumid />
 
       <Container>
-        <SectionHeader>Recent Missions</SectionHeader>
+        <SectionHeader label="Recent Missions"/>
       </Container>
+
+
 
       <GridCardContainer>
         {projectsWithSrc.map((item) => (
@@ -46,7 +48,7 @@ export function Dashboard() {
       </GridCardContainer>
 
       <Container>
-        <SectionHeader>Recent Members</SectionHeader>
+        <SectionHeader label="Recent Members"/>
       </Container>
 
       <GridCardContainer>

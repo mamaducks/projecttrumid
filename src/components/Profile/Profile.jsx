@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getProfileInfo } from "../../model/profile";
 import Container from "@mui/material/Container";
-import TrumidPatch from "../../utilities/patchtrumid.svg";
-import Trumid from "../../utilities/trumidavatarbadge.svg";
-import { GridCard } from "../Card/GridCard";
-import { GridCardContainer } from "../Card/GridCardContainer";
 import { PageHeader } from "../Headers/PageHeader";
 import { SectionHeader } from "../Headers/SectionHeader";
+import { GridCard } from "../Card/GridCard";
+import { GridCardContainer } from "../Card/GridCardContainer";
+import TrumidPatch from "../../utilities/patchtrumid.svg";
+import Trumid from "../../utilities/trumidavatarbadge.svg";
 
 export function Profile() {
   const { profileId } = useParams();
@@ -53,9 +53,11 @@ export function Profile() {
       />
 
       <Container maxWidth="lg">
-        <SectionHeader icon={Trumid} badgeContent={profileInfo.badges.length}>
-          Badges
-        </SectionHeader>
+        <SectionHeader
+          icon={Trumid}
+          badgeContent={profileInfo.badges.length}
+          label="Badges"
+        />
 
         <GridCardContainer>
           {badgesWithSrc.map((item) => (
@@ -72,9 +74,8 @@ export function Profile() {
         <SectionHeader
           icon={TrumidPatch}
           badgeContent={profileInfo.projects.length}
-        >
-          Missions
-        </SectionHeader>
+          label="Missions"
+        />
 
         <GridCardContainer>
           {projectsWithSrc.map((item) => (

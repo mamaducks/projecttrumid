@@ -40,7 +40,7 @@ export function Project() {
       <Container maxWidth="lg">
         {roles.map((item) => (
           <>
-            <SectionHeader>{item.name}s</SectionHeader>
+            <SectionHeader label={<>{item.name}s</>}/>
 
             <GridCardContainer>
               {item.people.map((item) => (

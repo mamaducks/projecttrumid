@@ -46,15 +46,18 @@ const theme = responsiveFontSizes(
           // fontWeight: 500,
         },
         h3: {
-          fontSize: "1.8rem",
+          fontSize: "1.5rem",
           fontFamily: "Quicksand",
         },
         h4: {
-          fontSize: "1.4rem",
+          fontSize: "1rem",
           fontFamily: "Quicksand",
         },
         h5: {
-          fontSize: "1rem",
+          fontSize: "0.875rem",
+        },
+        h6: {
+          fontSize: "0.75rem",
         }
       //   h4: {
       //     fontSize: "1.5rem",
@@ -174,47 +177,15 @@ const theme = responsiveFontSizes(
         styleOverrides: {
           root: {
             color: "#fff",
-            // overflow: "hidden",
-            // whiteSpace: "nowrap",
-            // textOverflow: "ellipsis",
             noWrap: "true",
             backgroundColor: "#011e4b",
-            // width: "100%",
             borderBottom: "3px solid ",
             borderColor: "#ff9100",
             display: "block",
-            // flexDirection: "column",
-            // paddingBottom: 5,
-            //  padding: 1,
-            // fontWeight: 700,
-            // alignItems: "center"
+            padding: 14
+         
           },
-          title: {
-            color: "#fff",
-            overflow: "hidden",
-            whiteSpace: "nowrap",
-            textOverflow: "ellipsis",
-            noWrap: "true",
-            fontSize: "larger"
-          },
-          subheader: {
-            color: "#ff9100",
-            noWrap: "true",
-            // ml: 2,
-            fontWeight: "bold",
-            overflow: "hidden",
-            whiteSpace: "nowrap",
-            textOverflow: "ellipsis",
-            display: "block",
-            fontSize: "smaller"
-          },
-          // content: {
-          //   action: {
-          //     alignSelf: "flex-start",
-          //   },
-
-          // padding: 20
-          // },
+          
         },
       },
 
@@ -230,9 +201,9 @@ const theme = responsiveFontSizes(
             // display: "flex",
             // flexDirection: "column",
             // paddingBottom: 5,
-            "&:last-child": {
-              padding: 14,
-            },
+            // "&:last-child": {
+            //   padding: 14,
+            // },
           },
         },
       },

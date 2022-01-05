@@ -6,17 +6,17 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   headerBox: {
-    margin: theme.spacing(9),
+    margin: theme.spacing(4),
   },
   mainHeader: {
     margin: theme.spacing(2),
-    height: "5vw",
+    height: "4vw",
     width: "auto",
     alignSelf: "center",
   },
   customHeader: {
     margin: theme.spacing(2),
-    height: "5vw",
+    height: "4vw",
     width: "auto",
     alignSelf: "center",
   },
@@ -54,15 +54,11 @@ export function PageHeader(props) {
                 className={classes.customHeader}
               />
             )}
-            {/* {!!isCustom ? (
-              <CustomHeader {...props} />
-            ) : (
-              <MainHeader {...props} />
-            )} */}
           </Box>
 
           <Box className={classes.headerTextBox}>
-            <Typography variant="h1" color="primary" lineHeight="1">
+            <Typography variant="h1" color="primary" lineHeight="1"
+            >
               {header}
             </Typography>
 
@@ -70,7 +66,8 @@ export function PageHeader(props) {
               variant="h3"
               gutterBottom
               color="secondary"
-              textAlign="right"
+              // textAlign="right"
+              align="justify"
             >
               {subheader}
             </Typography>

@@ -27,14 +27,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function SectionHeader({ badgeContent, children, icon }) {
+export function SectionHeader({ badgeContent, icon, label }) {
   const classes = useStyles();
   return (
     <>
       <Grid item className={classes.sectionHeader}>
         <img src={TrumidArrows} alt="mission" className={classes.arrowsImage} />
         <Typography variant="h3" px={2} color="primary">
-          {children}
+          
+          {label}
+          
+
+        
         </Typography>
 
         {badgeContent && (

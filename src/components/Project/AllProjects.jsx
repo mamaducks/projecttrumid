@@ -1,12 +1,10 @@
-import { Paper } from "@mui/material";
 import { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { getAllProjectInfos } from "../../model/project";
-// import { GridCard, GridContainer } from "../ReusedComponents/GridCard";
+import {PageHeader} from "../Headers/PageHeader";
 import { GridCard } from "../Card/GridCard";
 import { GridCardContainer } from "../Card/GridCardContainer";
-import {PageHeader} from "../Headers/PageHeader"
-// import { PageHeader } from "../ReusedComponents/PageHeader";
+
 
 export function AllProjects() {
   const projects = useRecoilValue(getAllProjectInfos);
@@ -24,8 +22,8 @@ export function AllProjects() {
 
   return (
     <div>
-      <Paper square={true}>
         <PageHeader header="Trumid Center" subheader="Our Missions" isTrumid />
+        
         <GridCardContainer>
           {projectsWithSrc.map((item) => (
             <GridCard
@@ -38,7 +36,7 @@ export function AllProjects() {
             />
           ))}
         </GridCardContainer>
-      </Paper>
+
     </div>
   );
 }
