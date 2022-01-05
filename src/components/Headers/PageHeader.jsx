@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mainHeader: {
     margin: theme.spacing(2),
-    height: "4vw",
+    height: "3.8vw",
     width: "auto",
     alignSelf: "center",
   },
@@ -66,8 +66,8 @@ export function PageHeader(props) {
               variant="h3"
               gutterBottom
               color="secondary"
-              // textAlign="right"
-              align="justify"
+              textAlign="right"
+              // align="justify"
             >
               {subheader}
             </Typography>

@@ -2,7 +2,7 @@ import { Box, Container } from "@mui/material";
 
 export function GridCardContainer({ children }) {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{pb: 6}}>
       <Box
         sx={{
           display: "grid",

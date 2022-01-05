@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
 
-    paddingTop: theme.spacing(7),
+    paddingTop: theme.spacing(4),
     margin: theme.spacing(2),
   },
   arrowsImage: {
@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
   },
   avatar: {
-    margin: theme.spacing(2),
+    // margin: theme.spacing(1),
   },
   divider: {
-    margin: theme.spacing(2),
+    // margin: theme.spacing(1),
     marginBottom: theme.spacing(5),
   },
 }));
@@ -33,7 +33,7 @@ export function SectionHeader({ badgeContent, icon, label }) {
     <>
       <Grid item className={classes.sectionHeader}>
         <img src={TrumidArrows} alt="mission" className={classes.arrowsImage} />
-        <Typography variant="h3" px={2} color="primary">
+        <Typography variant="h3" px={1} color="primary">
           
           {label}
           
